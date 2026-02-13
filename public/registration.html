@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register - FitZone</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: url('https://www.chennaitop10.com/wp-content/uploads/2023/12/Top-10-Gyms.jpg') no-repeat center center/cover;
+      background-size: 100% 120%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .animation-area {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      animation: animate 15s linear infinite;
+    }
+
+    .circle:nth-child(1) { width: 80px; height: 80px; top: 10%; left: 20%; }
+    .circle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: 70%; animation-delay: 2s; }
+    .circle:nth-child(3) { width: 120px; height: 120px; top: 30%; left: 80%; animation-delay: 4s; }
+    .circle:nth-child(4) { width: 90px; height: 90px; top: 80%; left: 10%; animation-delay: 6s; }
+
+    @keyframes animate {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+    }
+
+    .login-container {
+      backdrop-filter: blur(12px);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      width: 100%;
+      max-width: 420px;
+      z-index: 1;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 35px;
+      color: #dfe5ea;
+    }
+
+    .login-header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 3px rgba(6, 5, 5, 0.5);
+    }
+
+    .login-form .input-group {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .input-group i {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: #ecd105;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 12px 12px 12px 38px;
+      font-size: 0.95rem;
+      border: none;
+      border-radius: 8px;
+      background: rgba(72, 68, 68, 0.571);
+      transition: all 0.3s ease;
+    }
+
+    .input-group textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(3, 214, 241, 0.945);
+    }
+
+    .gender-hobbies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      color: #110101;
+      margin-top: 12px;
+      font-size: 0.9rem;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #1a2a6c, #b21f1f);
+      color: #fefeff;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      transform: scale(1.02);
+      background: linear-gradient(to right, #b21f1f, #1a2a6c);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Animation -->
+  <div class="animation-area">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="login-container">
+    <div class="login-header">
+      <h1>Register Form</h1>
+    </div>
+    <form class="login-form" action="/RegistrationValidation" method="post">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="name" placeholder="Full Name" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-envelope"></i>
+        <input type="email" name="email" placeholder="Email Address" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="psw" placeholder="Password" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="cpass" placeholder="Confirm Password" required />
+      </div>
+
+      <div class="input-group">
+        <i class="fas fa-map-marker-alt"></i>
+        <textarea name="address" placeholder="Address" required></textarea>
+      </div>
+
+      <div class="input-group">
+        <label style="color:#ecd105;">Gender</label>
+        <div class="gender-hobbies">
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+        </div>
+      </div>
+
+      
+
+      <button type="submit" class="login-btn">Register</button>
+    </form>
+  </div>
+
+</body>
+</html>

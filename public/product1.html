@@ -1,0 +1,2040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Power Supplements - Premium Gym Nutrition</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Your existing styles remain the same */
+    :root {
+      --primary: #198754;
+      --secondary: #343a40;
+      --accent: #dc3545;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                  url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #fff;
+      min-height: 100vh;
+    }
+    
+    .hero-carousel {
+      margin-bottom: 30px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .carousel-item img {
+      height: 500px;
+      object-fit: cover;
+    }
+    
+    .carousel-caption {
+      background: rgba(0,0,0,0.6);
+      border-radius: 10px;
+      padding: 20px;
+      bottom: 40px;
+    }
+    
+    .carousel-caption h5 {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    
+    .carousel-caption p {
+      font-size: 1.2rem;
+    }
+    
+    .navbar {
+      background-color: rgba(0,0,0,0.9);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.8rem;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .nav-link:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    .nav-link:hover:after {
+      width: 100%;
+    }
+    
+    .main-container {
+      background-color: rgba(255,255,255,0.95);
+      border-radius: 15px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+      margin: 30px auto;
+      padding: 30px;
+    }
+    
+    .page-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--secondary);
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    .page-title:after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 4px;
+      background: var(--primary);
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+    
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      height: 100%;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .product-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--accent);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .product-image-container {
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .product-image {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+    
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+    
+    .product-title {
+      color: var(--secondary);
+      font-weight: 700;
+      margin-bottom: 10px;
+      min-height: 60px;
+      cursor: pointer;
+    }
+    
+    .product-title:hover {
+      color: var(--primary);
+    }
+    
+    .product-type {
+      display: inline-block;
+      background-color: #f0f0f0;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    
+    .product-price {
+      font-weight: 800;
+      color: var(--primary);
+      font-size: 1.3rem;
+      margin: 10px 0;
+    }
+    
+    .product-rating {
+      color: #ffc107;
+      margin-bottom: 10px;
+    }
+    
+    .product-description {
+      font-size: 14px;
+      color: #666;
+      margin: 15px 0;
+      line-height: 1.6;
+    }
+    
+    .btn-add-cart {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 50px;
+      transition: all 0.3s;
+      width: 100%;
+    }
+    
+    .btn-add-cart:hover {
+      background: #145c3b;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(25, 135, 84, 0.3);
+    }
+    
+    .btn-add-cart:disabled {
+      background: #6c757d;
+      cursor: not-allowed;
+    }
+    
+    .cart-count {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.2rem;
+    }
+    
+    .search-box {
+      position: relative;
+      margin-bottom: 30px;
+    }
+    
+    .search-box input {
+      padding-left: 40px;
+      border-radius: 50px;
+      border: 2px solid #ddd;
+    }
+    
+    .search-box i {
+      position: absolute;
+      left: 15px;
+      top: 12px;
+      color: #777;
+    }
+    
+    .filter-btn {
+      margin: 5px;
+      background-color: var(--secondary);
+      color: white;
+      border-radius: 50px;
+      padding: 5px 15px;
+      font-size: 14px;
+      transition: all 0.3s;
+      border: none;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background-color: var(--primary);
+      transform: translateY(-2px);
+    }
+    
+    .cart-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    
+    .cart-item-image {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+    
+    .cart-item-details {
+      flex-grow: 1;
+      padding: 0 15px;
+    }
+    
+    .cart-item-title {
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    
+    .cart-item-price {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+.fw-bold .cart-count,
+#cart-count {
+  color: rgb(209, 87, 87) !important;
+}
+    
+    .cart-total {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    
+    .remove-btn {
+      color: var(--accent);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .remove-btn:hover {
+      transform: scale(1.2);
+    }
+    
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .quantity-btn {
+      background: none;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .quantity-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .contact-section {
+      padding: 60px 0;
+    }
+    
+    .contact-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      transition: all 0.3s;
+      border-left: 4px solid var(--primary);
+      cursor: pointer;
+    }
+    
+    .contact-info-item:hover {
+      background: linear-gradient(to right, #f8f9fa, #e9ecef);
+      transform: translateX(5px);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-right: 15px;
+    }
+    
+    .contact-details h6 {
+      color: var(--secondary);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    
+    .contact-details p {
+      color: #666;
+      margin: 0;
+    }
+    
+    .contact-form {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .form-control {
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+      padding: 12px;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+    }
+    
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .btn-submit:hover {
+      background: #145c3b;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(25, 135, 84, 0.3);
+    }
+    
+    .about-section {
+      padding: 60px 0;
+    }
+    
+    .about-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .about-feature {
+      text-align: center;
+      padding: 25px;
+      background: linear-gradient(145deg, #ffffff, #f8f9fa);
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      height: 100%;
+    }
+    
+    .about-feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(25, 135, 84, 0.15);
+    }
+    
+    .about-feature i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .about-feature h4 {
+      color: var(--secondary);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    
+    .about-feature p {
+      color: #666;
+      margin-bottom: 0;
+    }
+    
+    .stats-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    
+    .stat-item {
+      padding: 20px;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .stat-label {
+      color: var(--secondary);
+      font-weight: 600;
+    }
+    
+    .footer {
+      background-color: rgba(0,0,0,0.9);
+      color: white;
+      padding: 40px 0;
+      margin-top: 50px;
+    }
+    
+    .footer a {
+      text-decoration: none;
+      transition: color 0.3s;
+      cursor: pointer;
+    }
+    
+    .footer a:hover {
+      color: var(--primary) !important;
+    }
+    
+    .toast-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 50px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    .quick-view-btn {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 12px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      border: none;
+    }
+    
+    .product-image-container:hover .quick-view-btn {
+      opacity: 1;
+    }
+    
+    .shop-widget {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+
+    /* New payment method styles */
+    .payment-method-card {
+  border: 2px solid #0b0002;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+  color: #0b0002;
+}
+
+.payment-method-card:hover {
+  border-color: var(--primary);
+  background: #248232;
+  color: white;
+}
+
+.payment-method-card:hover .payment-icon {
+  color: white;
+}
+
+.payment-method-card.selected {
+  border-color: var(--primary);
+  background: #2a774c;
+  color: white;
+}
+
+.payment-method-card.selected .payment-icon {
+  color: white;
+}
+
+.payment-icon {
+  font-size: 24px;
+  width: 40px;
+  color: #0b0002;
+}
+
+.offer-chip {
+  display: inline-block;
+  background: #deffa5;
+  color: #1a3b2e;
+  padding: 5px 12px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+.d-flex span.fw-bold {
+  color: black !important;
+  background: transparent;
+}
+
+.cart-quantity-select {
+  width: 70px;
+  border-radius: 8px;
+  border: 1px solid #04070a;
+  padding: 5px;
+  color: #0b0002;
+  background: white;
+}
+
+.payment-title,
+h2:contains("Select Payment Method"),
+h3:contains("Select Payment Method") {
+  color: #d40505;
+  font-weight: 600;
+}
+h6.fw-bold {
+  color: black !important;
+}
+
+h6.fw-bold i {
+  color: black !important;
+}
+
+
+@media (max-width: 768px) {
+  .product-card {
+    margin-bottom: 20px;
+  }
+  
+  .navbar-brand {
+    font-size: 1.4rem;
+    color: #0b0002;
+  }
+  
+  .carousel-item img {
+    height: 300px;
+  }
+}
+</style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#" onclick="showHomePage()">💪 POWER SUPPLEMENTS</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" onclick="showHomePage()"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showShopPage()"><i class="fas fa-store"></i> Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showAboutPage()"><i class="fas fa-info-circle"></i> About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="showContactPage()"><i class="fas fa-envelope"></i> Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3">
+            <a class="nav-link position-relative" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+              <i class="fas fa-shopping-cart"></i> Cart
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count" id="cart-count-nav">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Carousel (Visible only on Home/Shop pages) -->
+  <div class="container hero-carousel" id="heroCarousel">
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="hover">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://www.muscleandstrength.in/cdn/shop/files/08.png?v=1683769990&width=3840" class="d-block w-100" alt="Supplement Offers">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Summer Sale - Up to 50% Off</h5>
+            <p>Premium supplements for your fitness journey</p>
+            <a href="#" class="btn btn-success btn-lg" onclick="showShopPage()">Shop Now</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://www.muscleandstrength.in/cdn/shop/files/01_76d20071-be18-4d79-929f-06828e95296c.png?v=1736584206&width=3840" class="d-block w-100" alt="Protein Supplements">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Premium Protein Blends</h5>
+            <p>Fuel your muscles with our high-quality protein formulas</p>
+            <a href="#" class="btn btn-success btn-lg" onclick="showShopPage(); setTimeout(() => filterProducts('Protein'), 100);">View Proteins</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://cdn.shopify.com/s/files/1/0009/1943/7372/t/15/assets/best-supplements-for-gym.jpg?v=1665219876" class="d-block w-100" alt="Pre-Workout">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>New Pre-Workout Formula</h5>
+            <p>Experience explosive energy for your workouts</p>
+            <a href="#" class="btn btn-success btn-lg" onclick="showShopPage(); setTimeout(() => filterProducts('Pre-Workout'), 100);">Try Now</a>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://www.muscleandstrength.in/cdn/shop/files/Untitleddesign_8.png?v=1727177282&width=3840" class="d-block w-100" alt="Recovery">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Enhanced Recovery</h5>
+            <p>Specialized formulas to help you recover faster</p>
+            <a href="#" class="btn btn-success btn-lg" onclick="showShopPage(); setTimeout(() => filterProducts('Recovery'), 100);">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="container main-container" id="mainContent">
+    <!-- Dynamic content will be loaded here -->
+  </div>
+
+  <!-- Product Details Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalProductTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-5">
+              <img src="" alt="" class="img-fluid rounded mb-3" id="modalProductImage">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge bg-secondary" id="modalProductType"></span>
+                <div class="product-rating" id="modalProductRating"></div>
+              </div>
+              <h4 class="product-price mb-3" id="modalProductPrice"></h4>
+              <button class="btn btn-success btn-lg w-100 mb-3" onclick="addCurrentToCart()" id="modalAddToCartBtn">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+            </div>
+            <div class="col-md-7">
+              <div class="card mb-3">
+                <div class="card-header bg-light">
+                  <h5 class="mb-0">Product Description</h5>
+                </div>
+                <div class="card-body" id="modalProductDescription"></div>
+              </div>
+              <div class="card">
+                <div class="card-header bg-light">
+                  <h5 class="mb-0">Key Benefits</h5>
+                </div>
+                <ul class="list-group list-group-flush" id="modalProductBenefits"></ul>
+              </div>
+              <div class="card mt-3">
+                <div class="card-header bg-light">
+                  <h5 class="mb-0">Specifications</h5>
+                </div>
+                <div class="card-body" id="modalProductSpecs"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Modal with Enhanced Payment and Quantity 1-10 -->
+  <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-shopping-cart text-success"></i> Your Cart</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="cart-items-container">
+            <!-- Cart items will be dynamically inserted here -->
+          </div>
+          
+          <!-- Offers & Coupons Section -->
+          <div class="mt-3 p-3 bg-light rounded">
+            <div class="d-flex align-items-center mb-2">
+              <i class="fas fa-tag text-success me-2"></i>
+              <span class="fw-bold">Available Offers</span>
+            </div>
+            <div>
+              <span class="offer-chip">15% off on Pre-Workout (POWER15)</span>
+              <span class="offer-chip">₹200 off on orders above ₹3999 (SAVE200)</span>
+              <span class="offer-chip">Free shipping on ₹2500+</span>
+            </div>
+          </div>
+          
+          <div class="cart-total text-end mt-4" id="cart-total">
+            Total: ₹0
+          </div>
+
+          <!-- Payment Methods Section -->
+          <div class="mt-4">
+            <h6 class="fw-bold"><i class="fas fa-credit-card me-2 text-success"></i> Select Payment Method</h6>
+            <div class="row mt-2" id="paymentMethodsContainer">
+              <!-- Dynamic via JS -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
+          <button type="button" class="btn btn-success" onclick="proceedToPayment()" id="checkoutBtn">
+            <i class="fas fa-lock"></i> Pay & Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick View Modal -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="quickViewTitle"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center">
+            <img src="" alt="" class="img-fluid mb-3" id="quickViewImage" style="max-height: 200px;">
+            <div class="product-price" id="quickViewPrice"></div>
+            <div class="product-rating" id="quickViewRating"></div>
+            <p id="quickViewDescription" class="mt-3"></p>
+            <button class="btn btn-success w-100" onclick="addFromQuickView()" id="quickViewAddBtn">
+              <i class="fas fa-cart-plus"></i> Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h5>About Power Supplements</h5>
+          <p>Premium quality supplements for athletes and fitness enthusiasts. Scientifically formulated for maximum results.</p>
+          <a href="#" onclick="showAboutPage()" class="text-white">Learn more <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="col-md-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="#" onclick="showHomePage()" class="text-white">Home</a></li>
+            <li><a href="#" onclick="showShopPage()" class="text-white">Products</a></li>
+            <li><a href="#" onclick="showAboutPage()" class="text-white">About Us</a></li>
+            <li><a href="#" onclick="showContactPage()" class="text-white">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h5>Contact Us</h5>
+          <p><i class="fas fa-map-marker-alt me-2"></i> 59001, KLE RLS Belgaum</p>
+          <p><i class="fas fa-phone me-2"></i> +91 6363836639</p>
+          <p><i class="fas fa-envelope me-2"></i> info@powersupplements.com</p>
+          <a href="#" onclick="showContactPage()" class="btn btn-sm btn-outline-success mt-2">Get in Touch</a>
+        </div>
+      </div>
+      <hr class="my-4 bg-light">
+      <div class="text-center">
+        <p>&copy; 2024 Power Supplements. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Product Data with Indian Rupee prices
+    const USD_TO_INR = 83.50; // Conversion rate
+    
+    const products = [
+      {
+        id: 1,
+        name: "Whey Protein Isolate (5lbs)",
+        image: "https://www.corebolics.com/cdn/shop/files/Whey_Gold_2kg_Chocolate_Icecream_Front.png?v=1751354585",
+        description: "Ultra-pure 90% protein content with minimal lactose. Perfect for post-workout recovery with 24g protein per scoop. Contains digestive enzymes for better absorption. Gluten-free and low in carbs.",
+        priceUSD: 49.99,
+        priceINR: 4175,
+        type: "Protein",
+        rating: 4.8,
+        servings: 70,
+        flavors: ["Chocolate", "Vanilla", "Strawberry"],
+        benefits: ["Muscle recovery", "Lean muscle growth", "Quick absorption"],
+        specs: ["24g protein per serving", "5.5g BCAAs", "1g sugar", "90 calories"]
+      },
+      {
+        id: 2,
+        name: "Creatine Monohydrate (300g)",
+        image: "https://nutriride.com/cdn/shop/files/483.webp?v=1733309943&width=600",
+        description: "Pharmaceutical grade creatine that increases ATP production for explosive strength gains. Clinically proven to enhance performance by up to 15%. Increases muscle volume and power output.",
+        priceUSD: 24.99,
+        priceINR: 2099,
+        type: "Performance",
+        rating: 4.9,
+        servings: 60,
+        benefits: ["Strength increase", "Power output", "Muscle volume"],
+        specs: ["5g creatine per serving", "Micronized", "Unflavored", "0 calories"]
+      },
+      {
+        id: 3,
+        name: "BCAA 2:1:1 Formula (400g)",
+        image: "https://m.media-amazon.com/images/I/71bYDOsB8CL.UF1000,1000_QL80.jpg",
+        description: "Optimal ratio of leucine, isoleucine and valine to reduce muscle breakdown during training. Includes electrolytes for hydration support. Unflavored version mixes easily with any beverage.",
+        priceUSD: 32.99,
+        priceINR: 2799,
+        type: "Recovery",
+        rating: 4.7,
+        servings: 80,
+        benefits: ["Reduce muscle breakdown", "Enhance recovery", "Hydration support"],
+        specs: ["5g BCAAs per serving", "2:1:1 ratio", "Electrolytes", "15 calories"]
+      },
+      {
+        id: 4,
+        name: "Nitric Oxide Pre-Workout",
+        image:"https://m.media-amazon.com/images/I/713ATRIf24L.jpg",
+        description: "Contains 300mg caffeine, 6g citrulline malate and beta-alanine for explosive energy and pumps. No artificial colors or unnecessary fillers. Designed for advanced athletes.",
+        priceUSD: 39.99,
+        priceINR: 3349,
+        type: "Pre-Workout",
+        rating: 4.6,
+        servings: 30,
+        flavors: ["Blue Raspberry", "Fruit Punch", "Sour Apple"],
+        benefits: ["Energy boost", "Muscle pumps", "Focus enhancement"],
+        specs: ["300mg caffeine", "6g citrulline malate", "3.2g beta-alanine", "0 sugar"]
+      },
+      {
+        id: 5,
+        name: "Mass Gainer (12lbs)",
+        image: "https://beastlife.in/cdn/shop/files/Image-02kg_Chocolate.jpg?v=1737448188",
+        description: "High calorie formula with 50g protein, 250g carbs and added digestive enzymes per serving. Perfect for hardgainers looking to add quality mass. Includes MCTs for clean energy.",
+        priceUSD: 59.99,
+        priceINR: 4999,
+        type: "Weight Gain",
+        rating: 4.5,
+        servings: 20,
+        benefits: ["Weight gain", "Muscle growth", "Calorie surplus"],
+        specs: ["1250 calories", "50g protein", "250g carbs", "5g creatine"]
+      },
+      {
+        id: 6,
+        name: "L-Glutamine Powder (500g)",
+        image: "https://5.imimg.com/data5/SELLER/Default/2024/12/474235021/PM/XE/GU/137213647/gat-sports-l-glutamine-high-quality-powder.webp",
+        description: "Supports immune function and reduces muscle soreness. Helps maintain nitrogen balance and prevents catabolism during intense training periods. Mixes easily with no aftertaste.",
+        priceUSD: 22.99,
+        priceINR: 1899,
+        type: "Recovery",
+        rating: 4.4,
+        servings: 100,
+        benefits: ["Immune support", "Muscle recovery", "Gut health"],
+        specs: ["5g glutamine per serving", "Unflavored", "0 calories", "Micronized"]
+      },
+      {
+        id: 7,
+        name: "Fat Burner Thermogenic",
+        image: "https://5.imimg.com/data5/SELLER/Default/2023/8/339019232/OR/DX/VE/195991092/fat-burner-500x500.png",
+        description: "Advanced formula with green tea extract, cayenne pepper and caffeine to boost metabolism and energy levels while suppressing appetite. Supports fat oxidation and thermogenesis.",
+        priceUSD: 37.99,
+        priceINR: 3199,
+        type: "Fat Loss",
+        rating: 4.5,
+        servings: 60,
+        benefits: ["Fat burning", "Metabolism boost", "Appetite control"],
+        specs: ["200mg caffeine", "Green tea extract", "Cayenne pepper", "0 calories"]
+      },
+      {
+        id: 8,
+        name: "Post-Workout Recovery",
+        image: "https://www.transparentlabs.com/cdn/shop/files/TL_Post_30S_SL_1_1.png?v=1746465868",
+        description: "2:1 carb-to-protein ratio with added glutamine and BCAAs to maximize glycogen replenishment. Reduces cortisol levels post-exercise. Scientifically formulated for optimal recovery.",
+        priceUSD: 34.99,
+        priceINR: 2999,
+        type: "Recovery",
+        rating: 4.8,
+        servings: 30,
+        benefits: ["Glycogen replenishment", "Muscle repair", "Cortisol reduction"],
+        specs: ["25g carbs", "12g protein", "5g glutamine", "160 calories"]
+      },
+      {
+        id: 9,
+        name: "Casein Protein (4lbs)",
+        image: "https://m.media-amazon.com/images/I/71gk2z736nL.UF1000,1000_QL80.jpg",
+        description: "Slow-digesting protein ideal for nighttime use. Provides sustained amino acid release for up to 7 hours to prevent muscle breakdown. Micellar casein for maximum absorption.",
+        priceUSD: 44.99,
+        priceINR: 3799,
+        type: "Protein",
+        rating: 4.7,
+        servings: 50,
+        flavors: ["Chocolate", "Vanilla", "Cookies & Cream"],
+        benefits: ["Nighttime protein", "Slow digestion", "Muscle preservation"],
+        specs: ["24g protein", "0g sugar", "120 calories", "Micellar casein"]
+      },
+      {
+        id: 10,
+        name: "Joint Support Complex",
+        image: "https://m.media-amazon.com/images/I/51Pnka8naPL.jpg",
+        description: "Contains glucosamine, chondroitin and MSM to support joint health and reduce inflammation from heavy training. Essential for lifters and athletes with joint stress.",
+        priceUSD: 27.99,
+        priceINR: 2349,
+        type: "Recovery",
+        rating: 4.6,
+        servings: 90,
+        benefits: ["Joint health", "Inflammation reduction", "Mobility support"],
+        specs: ["1500mg glucosamine", "1200mg chondroitin", "500mg MSM", "0 calories"]
+      },
+      {
+        id: 11,
+        name: "Multivitamin Performance",
+        image: "https://www.maxinutrition.com/cdn/shop/files/Maxi_Multivitamin_047fbfa6-7aa4-453f-91be-90501d6353b2.png?v=1721058907",
+        description: "Comprehensive vitamin and mineral formula optimized for athletes. Includes antioxidants and performance nutrients to support intense training demands and overall health.",
+        priceUSD: 29.99,
+        priceINR: 2499,
+        type: "Vitamins",
+        rating: 4.5,
+        servings: 60,
+        benefits: ["Nutrient support", "Immune function", "Energy metabolism"],
+        specs: ["18 vitamins", "12 minerals", "Antioxidants", "0 calories"]
+      },
+      {
+        id: 12,
+        name: "Omega-3 Fish Oil",
+        image: "https://images-cdn.ubuy.co.in/633b0d5aafc59f11214ff6a0-omega-3-fish-oil-2-000mg-pharmaceutical.jpg",
+        description: "High potency EPA/DHA fatty acids to support heart health, brain function and reduce inflammation. Molecularly distilled for purity and no fishy aftertaste.",
+        priceUSD: 24.99,
+        priceINR: 2099,
+        type: "Vitamins",
+        rating: 4.7,
+        servings: 90,
+        benefits: ["Heart health", "Brain function", "Inflammation reduction"],
+        specs: ["1000mg EPA", "500mg DHA", "Molecularly distilled", "40 calories"]
+      },
+      {
+        id: 13,
+        name: "Natural Test Booster",
+        image: "https://5.imimg.com/data5/SELLER/Default/2023/2/QF/SU/LM/53869928/testosterone-booster-tablet.jpg",
+        description: "Contains tribulus, fenugreek and ashwagandha to support healthy testosterone levels. Increases strength, libido and recovery capacity.",
+        priceUSD: 47.99,
+        priceINR: 3999,
+        type: "Hormonal Support",
+        rating: 4.3,
+        servings: 60,
+        benefits: ["Testosterone support", "Strength gain", "Recovery boost"],
+        specs: ["Tribulus terrestris", "Fenugreek", "Ashwagandha", "0 calories"]
+      },
+      {
+        id: 14,
+        name: "Electrolyte Complex (90 tabs)",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2HnZnL-0s0zfcSqsRD2Fch9ShSxta7bXmMA&s",
+        description: "Perfect balance of sodium, potassium and magnesium to prevent cramping during endurance activities. Includes B-vitamins for energy metabolism.",
+        priceUSD: 19.99,
+        priceINR: 1699,
+        type: "Hydration",
+        rating: 4.7,
+        servings: 90,
+        benefits: ["Hydration", "Cramp prevention", "Energy metabolism"],
+        specs: ["250mg sodium", "100mg potassium", "50mg magnesium", "B-vitamins"]
+      },
+      {
+        id: 15,
+        name: "CLA Softgels (180ct)",
+        image: "https://challengernutrition.com/cdn/shop/products/CLA-Softgels-90-servings_1024x1024.png?v=1612697010",
+        description: "Conjugated linoleic acid shown in studies to reduce body fat while preserving lean muscle mass. Supports metabolic rate and fat oxidation.",
+        priceUSD: 29.99,
+        priceINR: 2499,
+        type: "Fat Loss",
+        rating: 4.2,
+        servings: 90,
+        benefits: ["Fat loss", "Muscle preservation", "Metabolism boost"],
+        specs: ["1000mg CLA", "Softgels", "0 calories", "Preserves muscle"]
+      },
+      {
+        id: 16,
+        name: "EAA + Hydration Formula",
+        image: "https://nutrex.com/cdn/shop/files/EAA-LL.png?v=1740081124",
+        description: "All 9 essential amino acids with coconut water powder for intra-workout hydration. Enhances endurance and delays fatigue.",
+        priceUSD: 31.99,
+        priceINR: 2699,
+        type: "Performance",
+        rating: 4.7,
+        servings: 40,
+        benefits: ["Essential amino acids", "Hydration", "Endurance"],
+        specs: ["10g EAAs", "Coconut water", "Electrolytes", "0 sugar"]
+      },
+      {
+        id: 17,
+        name: "Vegan Protein Blend",
+        image: "https://www.myprotein.co.in/images?url=https://static.thcdn.com/productimg/original/12323914-2064935310148412.jpg&format=webp&auto=avif&crop=1100,1200,smart",
+        description: "Plant-based protein combining pea, rice and hemp proteins for complete amino acid profile. Dairy-free and easily digestible.",
+        priceUSD: 42.99,
+        priceINR: 3599,
+        type: "Protein",
+        rating: 4.4,
+        servings: 45,
+        flavors: ["Chocolate", "Vanilla", "Strawberry"],
+        benefits: ["Plant-based", "Dairy-free", "Complete protein"],
+        specs: ["25g protein", "4.5g BCAAs", "1g sugar", "130 calories"]
+      }
+    ];
+
+    // Cart state
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let currentProduct = null;
+    let quickViewProduct = null;
+    let selectedPaymentMethod = 'credit'; // default
+
+    // DOM Elements
+    const mainContent = document.getElementById('mainContent');
+    const heroCarousel = document.getElementById('heroCarousel');
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      updateCartCount();
+      showHomePage();
+      
+      // Add search event listener
+      document.addEventListener('keyup', function(e) {
+        if (e.target.id === 'search-input') {
+          searchProducts();
+        }
+      });
+    });
+
+    // Page Navigation Functions
+    function showHomePage() {
+      heroCarousel.style.display = 'block';
+      loadShopContent();
+      updateActiveNav('home');
+    }
+
+    function showShopPage() {
+      heroCarousel.style.display = 'block';
+      loadShopContent();
+      updateActiveNav('shop');
+    }
+
+    function showAboutPage() {
+      heroCarousel.style.display = 'none';
+      loadAboutContent();
+      updateActiveNav('about');
+    }
+
+    function showContactPage() {
+      heroCarousel.style.display = 'none';
+      loadContactContent();
+      updateActiveNav('contact');
+    }
+
+    function updateActiveNav(page) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('active');
+      });
+      
+      const navLinks = document.querySelectorAll('.nav-link');
+      if (page === 'home') navLinks[0].classList.add('active');
+      else if (page === 'shop') navLinks[1].classList.add('active');
+      else if (page === 'about') navLinks[2].classList.add('active');
+      else if (page === 'contact') navLinks[3].classList.add('active');
+    }
+
+    // Shop Page Content
+    function loadShopContent() {
+      const content = `
+        <div class="shop-widget">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <h3><i class="fas fa-bolt me-2"></i> Power Up Your Workout!</h3>
+              <p class="mb-0">Get 15% off on all Pre-Workout products. Use code: POWER15</p>
+            </div>
+            <div class="col-md-4 text-md-end">
+              <span class="badge bg-light text-dark p-3">🔥 Limited Time Offer</span>
+            </div>
+          </div>
+        </div>
+        
+        <h1 class="page-title">PREMIUM GYM SUPPLEMENTS</h1>
+        
+        <!-- Search Box -->
+        <div class="row mb-4">
+          <div class="col-md-6 mx-auto">
+            <div class="search-box">
+              <i class="fas fa-search"></i>
+              <input type="text" class="form-control" placeholder="Search products..." id="search-input">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-buttons mb-4 text-center">
+          <button class="btn filter-btn active" onclick="filterProducts('all')">All Products</button>
+          <button class="btn filter-btn" onclick="filterProducts('Protein')">Protein</button>
+          <button class="btn filter-btn" onclick="filterProducts('Pre-Workout')">Pre-Workout</button>
+          <button class="btn filter-btn" onclick="filterProducts('Recovery')">Recovery</button>
+          <button class="btn filter-btn" onclick="filterProducts('Fat Loss')">Fat Loss</button>
+          <button class="btn filter-btn" onclick="filterProducts('Performance')">Performance</button>
+          <button class="btn filter-btn" onclick="filterProducts('Vitamins')">Vitamins</button>
+        </div>
+        
+        <!-- Product Grid -->
+        <div class="row" id="product-list"></div>
+
+        <!-- Cart Summary -->
+        <div class="text-end mt-4">
+          <button class="btn btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#cartModal">
+            <i class="fas fa-eye"></i> View Cart
+          </button>
+          <button class="btn btn-danger me-3" onclick="clearCart()">
+            <i class="fas fa-trash"></i> Clear Cart
+          </button>
+          <span class="fw-bold">🛒 Items in Cart: <span class="cart-count" id="cart-count">0</span>
+          <style>
+  .fw-bold {
+    color: black;
+  }
+</style></span>
+        </div>
+      `;
+      
+      mainContent.innerHTML = content;
+      updateCartCount();
+      displayProducts(products);
+      
+      // Re-attach search event listener
+      const searchInput = document.getElementById('search-input');
+      if (searchInput) {
+        searchInput.addEventListener('keyup', searchProducts);
+      }
+      
+      // Add filter button listeners
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    }
+
+    // About Page Content
+    function loadAboutContent() {
+      const content = `
+        <div class="about-section">
+          <h1 class="page-title">ABOUT POWER SUPPLEMENTS</h1>
+          
+          <div class="about-card">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                <h2 class="text-success mb-4">Your Trusted Partner in Fitness</h2>
+                <p class="lead mb-4" style="color: var(--secondary);">Since 2020, Power Supplements has been committed to providing the highest quality nutritional supplements to fitness enthusiasts and athletes across India.</p>
+                <p style="color: #666; line-height: 1.8;">We believe that proper nutrition is the foundation of any successful fitness journey. That's why we meticulously source our ingredients from trusted global partners and ensure every product meets rigorous quality standards. Our team of nutrition experts and fitness professionals works tirelessly to bring you scientifically-backed formulations that deliver real results.</p>
+                <div class="mt-4">
+                  <a href="#" onclick="showContactPage()" class="btn btn-success btn-lg">
+                    <i class="fas fa-headset"></i> Get in Touch
+                  </a>
+                  <a href="#" onclick="showShopPage()" class="btn btn-outline-success btn-lg ms-3">
+                    <i class="fas fa-store"></i> Shop Now
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="stats-card">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Premium Products</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Authentic Products</div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Customer Support</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-5">
+            <div class="col-lg-4 mb-4">
+              <div class="about-feature">
+                <i class="fas fa-flask"></i>
+                <h4>Scientifically Formulated</h4>
+                <p>Every product is developed based on the latest scientific research and clinical studies to ensure maximum effectiveness.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <div class="about-feature">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Third-Party Tested</h4>
+                <p>All our supplements undergo rigorous third-party testing for purity, potency, and safety compliance.</p>
+              </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+              <div class="about-feature">
+                <i class="fas fa-leaf"></i>
+                <h4>Clean Ingredients</h4>
+                <p>We prioritize clean, responsibly sourced ingredients with no artificial fillers or unnecessary additives.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card mt-4">
+            <div class="row">
+              <div class="col-md-6">
+                <h3 class="text-success mb-4">Our Mission</h3>
+                <p style="color: #666; line-height: 1.8;">To empower individuals on their fitness journey by providing premium quality supplements that are both effective and affordable. We strive to educate our community about proper nutrition and help them achieve their health and fitness goals through science-backed solutions.</p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="text-success mb-4">Our Vision</h3>
+                <p style="color: #666; line-height: 1.8;">To become India's most trusted supplement brand, recognized for uncompromising quality, transparency, and customer satisfaction. We aim to build a healthier nation by making premium nutrition accessible to everyone.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      mainContent.innerHTML = content;
+    }
+
+    // Contact Page Content with Widget
+    function loadContactContent() {
+      const content = `
+        <div class="contact-section">
+          <h1 class="page-title">CONTACT US</h1>
+          
+          <div class="row">
+            <div class="col-lg-5 mb-4">
+              <div class="contact-card">
+                <h3 class="text-success mb-4">Get In Touch</h3>
+                <p class="text-muted mb-4">Have questions about our products or need personalized supplement advice? Our team of fitness nutrition experts is here to help you 24/7.</p>
+                
+                <!-- Contact Info Items with direct actions -->
+                <div class="contact-info-item" onclick="window.location.href='tel:+916363836639'">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h6>Call Us</h6>
+                    <p>+91 6363836639</p>
+                    <small class="text-success">Click to call</small>
+                  </div>
+                </div>
+                
+                <div class="contact-info-item" onclick="window.location.href='mailto:info@powersupplements.com'">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h6>Email Us</h6>
+                    <p>info@powersupplements.com</p>
+                    <small class="text-success">Click to email</small>
+                  </div>
+                </div>
+                
+                <div class="contact-info-item" onclick="window.open('https://maps.google.com/?q=KLE+RLS+Belgaum+59001', '_blank')">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h6>Visit Us</h6>
+                    <p>59001, KLE RLS Belgaum</p>
+                    <small class="text-success">Click to open map</small>
+                  </div>
+                </div>
+                
+                <div class="contact-info-item" onclick="window.open('https://wa.me/916363836639', '_blank')">
+                  <div class="contact-icon" style="background: #25D366;">
+                    <i class="fab fa-whatsapp"></i>
+                  </div>
+                  <div class="contact-details">
+                    <h6>WhatsApp</h6>
+                    <p>+91 6363836639</p>
+                    <small class="text-success">Click to chat</small>
+                  </div>
+                </div>
+
+                <div class="mt-4">
+                  <h5 class="mb-3">Follow Us</h5>
+                  <div class="d-flex gap-3">
+                    <a href="#" class="btn btn-outline-success btn-lg rounded-circle" onclick="window.open('https://facebook.com', '_blank')">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-success btn-lg rounded-circle" onclick="window.open('https://instagram.com', '_blank')">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-success btn-lg rounded-circle" onclick="window.open('https://twitter.com', '_blank')">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="btn btn-outline-success btn-lg rounded-circle" onclick="window.open('https://youtube.com', '_blank')">
+                      <i class="fab fa-youtube"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-lg-7 mb-4">
+              <div class="contact-form">
+                <h3 class="text-success mb-4">Send Us a Message</h3>
+                <form id="contactForm" onsubmit="submitContactForm(event)">
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label fw-bold">Your Name</label>
+                      <input type="text" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label fw-bold">Email Address</label>
+                      <input type="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label fw-bold">Phone Number</label>
+                      <input type="tel" class="form-control" placeholder="+91 98765 43210">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label fw-bold">Subject</label>
+                      <select class="form-control">
+                        <option>General Inquiry</option>
+                        <option>Product Information</option>
+                        <option>Order Support</option>
+                        <option>Wholesale</option>
+                        <option>Partnership</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-4">
+                    <label class="form-label fw-bold">Your Message</label>
+                    <textarea class="form-control" rows="5" placeholder="How can we help you?" required></textarea>
+                  </div>
+                  
+                  <button type="submit" class="btn-submit w-100">
+                    <i class="fas fa-paper-plane me-2"></i> Send Message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Business Hours -->
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="contact-card text-center">
+                <h3 class="text-success mb-4">Business Hours</h3>
+                <div class="row">
+                  <div class="col-md-3 mb-3">
+                    <h6>Monday - Friday</h6>
+                    <p class="text-muted">9:00 AM - 8:00 PM</p>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <h6>Saturday</h6>
+                    <p class="text-muted">10:00 AM - 6:00 PM</p>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <h6>Sunday</h6>
+                    <p class="text-muted">Closed</p>
+                  </div>
+                  <div class="col-md-3 mb-3">
+                    <h6>Customer Support</h6>
+                    <p class="text-success">24/7 Available</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      mainContent.innerHTML = content;
+    }
+
+    // Contact Form Submission
+    function submitContactForm(event) {
+      event.preventDefault();
+      showToast('Thank you for contacting us! We will respond within 24 hours.');
+      document.getElementById('contactForm').reset();
+      return false;
+    }
+
+    // Display Products
+    function displayProducts(productsToDisplay) {
+      const productList = document.getElementById('product-list');
+      if (!productList) return;
+      
+      productList.innerHTML = '';
+      
+      if (productsToDisplay.length === 0) {
+        productList.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+            <h4 class="text-dark">No products found</h4>
+            <p class="text-muted">Try adjusting your search or filters</p>
+          </div>
+        `;
+        return;
+      }
+      
+      productsToDisplay.forEach(product => {
+        const col = document.createElement('div');
+        col.className = 'col-md-4 col-sm-6 mb-4';
+        
+        // Generate star rating
+        const fullStars = Math.floor(product.rating);
+        const halfStar = product.rating % 1 !== 0;
+        const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+        
+        let stars = '';
+        for (let i = 0; i < fullStars; i++) stars += '★';
+        if (halfStar) stars += '½';
+        for (let i = 0; i < emptyStars; i++) stars += '☆';
+        
+        const isInCart = cart.some(item => item.id === product.id);
+        
+        col.innerHTML = `
+          <div class="product-card">
+            ${product.type === 'Protein' || product.type === 'Pre-Workout' ? '<span class="product-badge">BESTSELLER</span>' : ''}
+            <div class="product-image-container" onclick="viewProductDetails(${product.id})">
+              <img src="${product.image}" alt="${product.name}" class="product-image" style="cursor: pointer;">
+              <button class="quick-view-btn" onclick="event.stopPropagation(); quickView(${product.id})">
+                <i class="fas fa-eye"></i> Quick View
+              </button>
+            </div>
+            <h5 class="product-title" onclick="viewProductDetails(${product.id})">${product.name}</h5>
+            <span class="product-type">${product.type}</span>
+            <div class="product-price">₹${product.priceINR.toLocaleString('en-IN')}</div>
+            <div class="product-rating">${stars} <span style="color: #666; font-size: 13px;">(${product.rating})</span></div>
+            <p class="product-description">${product.description.substring(0, 80)}...</p>
+            <button class="btn btn-add-cart" onclick="addToCart(${product.id})" ${isInCart ? 'disabled' : ''}>
+              ${isInCart ? '<i class="fas fa-check"></i> Added' : '<i class="fas fa-cart-plus"></i> Add to Cart'}
+            </button>
+            <button class="btn btn-link w-100 mt-2 text-success" onclick="viewProductDetails(${product.id})">
+              <i class="fas fa-info-circle"></i> View Details
+            </button>
+          </div>
+        `;
+        
+        productList.appendChild(col);
+      });
+    }
+
+    // Quick View Function
+    function quickView(productId) {
+      quickViewProduct = products.find(p => p.id === productId);
+      if (!quickViewProduct) return;
+      
+      const fullStars = Math.floor(quickViewProduct.rating);
+      const halfStar = quickViewProduct.rating % 1 !== 0;
+      let stars = '';
+      for (let i = 0; i < fullStars; i++) stars += '★';
+      if (halfStar) stars += '½';
+      for (let i = 0; i < (5 - fullStars - (halfStar ? 1 : 0)); i++) stars += '☆';
+      
+      document.getElementById('quickViewTitle').textContent = quickViewProduct.name;
+      document.getElementById('quickViewImage').src = quickViewProduct.image;
+      document.getElementById('quickViewPrice').innerHTML = `₹${quickViewProduct.priceINR.toLocaleString('en-IN')}`;
+      document.getElementById('quickViewRating').innerHTML = `${stars} (${quickViewProduct.rating})`;
+      document.getElementById('quickViewDescription').textContent = quickViewProduct.description;
+      
+      const isInCart = cart.some(item => item.id === quickViewProduct.id);
+      const quickViewAddBtn = document.getElementById('quickViewAddBtn');
+      quickViewAddBtn.innerHTML = isInCart ? 
+        '<i class="fas fa-check"></i> Already in Cart' : 
+        '<i class="fas fa-cart-plus"></i> Add to Cart';
+      quickViewAddBtn.disabled = isInCart;
+      
+      const modal = new bootstrap.Modal(document.getElementById('quickViewModal'));
+      modal.show();
+    }
+
+    // Add from Quick View
+    function addFromQuickView() {
+      if (quickViewProduct) {
+        addToCart(quickViewProduct.id);
+        const modal = bootstrap.Modal.getInstance(document.getElementById('quickViewModal'));
+        modal.hide();
+      }
+    }
+
+    // Filter Products
+    function filterProducts(type) {
+      if (type === 'all') {
+        displayProducts(products);
+      } else {
+        const filteredProducts = products.filter(product => product.type === type);
+        displayProducts(filteredProducts);
+      }
+    }
+
+    // Search Products
+    function searchProducts() {
+      const searchInput = document.getElementById('search-input');
+      if (!searchInput) return;
+      
+      const searchTerm = searchInput.value.toLowerCase().trim();
+      
+      if (searchTerm === '') {
+        displayProducts(products);
+        return;
+      }
+      
+      const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm) || 
+        product.description.toLowerCase().includes(searchTerm) ||
+        product.type.toLowerCase().includes(searchTerm)
+      );
+      
+      displayProducts(filteredProducts);
+    }
+
+    // Add to Cart with quantity dropdown 1-10
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        const existingItem = cart.find(item => item.id === productId);
+        
+        if (!existingItem) {
+          // Default quantity 1
+          cart.push({
+            ...product,
+            quantity: 1
+          });
+          
+          saveCart();
+          updateCartCount();
+          
+          // Update the specific product button
+          const currentDisplayedProducts = getCurrentDisplayedProducts();
+          displayProducts(currentDisplayedProducts);
+          
+          showToast(`${product.name} added to cart!`);
+        } else {
+          showToast(`${product.name} is already in your cart!`);
+        }
+      }
+    }
+
+    // Remove from Cart
+    function removeFromCart(productId) {
+      cart = cart.filter(item => item.id !== productId);
+      saveCart();
+      updateCartCount();
+      displayCartModal();
+      
+      // Update product display if on shop page
+      const currentDisplayedProducts = getCurrentDisplayedProducts();
+      if (currentDisplayedProducts.length > 0) {
+        displayProducts(currentDisplayedProducts);
+      }
+      
+      showToast('Item removed from cart!');
+    }
+
+    // Update Quantity - now using dropdown 1-10
+    function updateQuantity(productId, newQuantity) {
+      const cartItem = cart.find(item => item.id === productId);
+      if (cartItem) {
+        // newQuantity from select element (1-10)
+        const qty = parseInt(newQuantity);
+        if (qty > 0) {
+          cartItem.quantity = qty;
+          saveCart();
+          updateCartCount();
+          displayCartModal();
+        } else {
+          removeFromCart(productId);
+        }
+      }
+    }
+
+    // View Cart Modal with quantity dropdown 1-10
+    function displayCartModal() {
+      const cartContainer = document.getElementById('cart-items-container');
+      const cartTotal = document.getElementById('cart-total');
+      
+      if (!cartContainer) return;
+      
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `
+          <div class="text-center py-5">
+            <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+            <h5 class="text-dark">Your cart is empty</h5>
+            <p class="text-muted">Start shopping to add items to your cart</p>
+            <button class="btn btn-success mt-3" data-bs-dismiss="modal" onclick="showShopPage()">
+              <i class="fas fa-store"></i> Browse Products
+            </button>
+          </div>
+        `;
+        cartTotal.innerHTML = 'Total: ₹0';
+        return;
+      }
+      
+      let html = '';
+      let total = 0;
+      
+      cart.forEach(item => {
+        total += item.priceINR * (item.quantity || 1);
+        
+        // Generate dropdown options 1-10
+        let options = '';
+        for (let i = 1; i <= 10; i++) {
+          options += `<option value="${i}" ${(item.quantity === i) ? 'selected' : ''}>${i}</option>`;
+        }
+        
+        html += `
+          <div class="cart-item d-flex align-items-center">
+            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <div class="cart-item-details">
+              <h6 class="cart-item-title">${item.name}</h6>
+              <span class="badge bg-secondary">${item.type}</span>
+              <div class="cart-item-price mt-2">₹${item.priceINR.toLocaleString('en-IN')}</div>
+            </div>
+            <div class="quantity-control">
+              <select class="form-select cart-quantity-select" onchange="updateQuantity(${item.id}, this.value)">
+                ${options}
+              </select>
+            </div>
+            <div class="ms-4">
+              <i class="fas fa-trash remove-btn" onclick="removeFromCart(${item.id})"></i>
+            </div>
+          </div>
+        `;
+      });
+      
+      cartContainer.innerHTML = html;
+      cartTotal.innerHTML = `Total: ₹${total.toLocaleString('en-IN')}`;
+      
+      // Render payment methods
+      renderPaymentMethods();
+    }
+
+    // Render payment methods (PhonePe, GPay, Credit Card, etc)
+    function renderPaymentMethods() {
+      const container = document.getElementById('paymentMethodsContainer');
+      if (!container) return;
+      
+      const methods = [
+        
+        { id: 'gpay', name: 'Google Pay', icon: 'fa-brands fa-google-pay', upi: true },
+        { id: 'paytm', name: 'Paytm', icon: 'fa-brands fa-amazon-pay', upi: true },
+        { id: 'credit', name: 'Credit/Debit Card', icon: 'fa-regular fa-credit-card', upi: false },
+        { id: 'netbanking', name: 'Net Banking', icon: 'fa-solid fa-building-columns', upi: false }
+      ];
+      
+      let html = '';
+      methods.forEach(m => {
+        html += `
+          <div class="col-md-6 mb-2">
+            <div class="payment-method-card d-flex align-items-center ${selectedPaymentMethod === m.id ? 'selected' : ''}" onclick="selectPaymentMethod('${m.id}')">
+              <div class="payment-icon"><i class="${m.icon}"></i></div>
+              <div class="ms-3 flex-grow-1">
+                <span class="fw-bold">${m.name}</span>
+                ${m.upi ? '<span class="badge bg-success ms-2">UPI</span>' : ''}
+              </div>
+              <div><i class="fa-regular fa-circle-check ${selectedPaymentMethod === m.id ? 'text-success' : 'text-muted'}"></i></div>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function selectPaymentMethod(methodId) {
+      selectedPaymentMethod = methodId;
+      renderPaymentMethods(); // re-render with selected state
+    }
+
+    // Proceed to payment (enhanced checkout with offers & payment)
+    function proceedToPayment() {
+      if (cart.length === 0) {
+        showToast('Your cart is empty!');
+        return;
+      }
+      
+      let total = cart.reduce((sum, item) => sum + (item.priceINR * (item.quantity || 1)), 0);
+      
+      // Apply sample offer logic (simple)
+      let discount = 0;
+      if (total > 3999) discount = 200;
+      let finalTotal = total - discount;
+      
+      // Payment method mapping
+      const methodNames = {
+        phonepay: 'PhonePe', gpay: 'Google Pay', paytm: 'Paytm', credit: 'Credit/Debit Card', netbanking: 'Net Banking'
+      };
+      const method = methodNames[selectedPaymentMethod] || 'Credit/Debit Card';
+      
+      // Simulate payment success
+      alert(`🎉 Payment Successful!\n\nMethod: ${method}\nAmount: ₹${finalTotal.toLocaleString('en-IN')}\nDiscount: ₹${discount}\n\nThank you for shopping with Power Supplements!`);
+      
+      // Clear cart after checkout
+      cart = [];
+      saveCart();
+      updateCartCount();
+      
+      // Update product display if on shop page
+      const currentDisplayedProducts = getCurrentDisplayedProducts();
+      if (currentDisplayedProducts.length > 0) {
+        displayProducts(currentDisplayedProducts);
+      }
+      
+      // Close cart modal if open
+      const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+      if (cartModal) cartModal.hide();
+      
+      showToast('Order placed successfully!');
+    }
+
+    // Clear Cart
+    function clearCart() {
+      if (cart.length === 0) {
+        showToast('Your cart is already empty!');
+        return;
+      }
+      
+      if (confirm('Are you sure you want to clear your cart?')) {
+        cart = [];
+        saveCart();
+        updateCartCount();
+        
+        // Update product display if on shop page
+        const currentDisplayedProducts = getCurrentDisplayedProducts();
+        if (currentDisplayedProducts.length > 0) {
+          displayProducts(currentDisplayedProducts);
+        }
+        
+        displayCartModal();
+        showToast('Cart cleared!');
+      }
+    }
+
+    // View Product Details
+    function viewProductDetails(productId) {
+      currentProduct = products.find(p => p.id === productId);
+      if (!currentProduct) return;
+      
+      const fullStars = Math.floor(currentProduct.rating);
+      const halfStar = currentProduct.rating % 1 !== 0;
+      const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+      
+      let stars = '';
+      for (let i = 0; i < fullStars; i++) stars += '★';
+      if (halfStar) stars += '½';
+      for (let i = 0; i < emptyStars; i++) stars += '☆';
+      
+      document.getElementById('modalProductTitle').textContent = currentProduct.name;
+      document.getElementById('modalProductImage').src = currentProduct.image;
+      document.getElementById('modalProductType').textContent = currentProduct.type;
+      document.getElementById('modalProductPrice').innerHTML = `₹${currentProduct.priceINR.toLocaleString('en-IN')}`;
+      document.getElementById('modalProductRating').innerHTML = `${stars} (${currentProduct.rating})`;
+      document.getElementById('modalProductDescription').innerHTML = `<p>${currentProduct.description}</p>`;
+      
+      // Display benefits
+      const benefitsList = document.getElementById('modalProductBenefits');
+      if (currentProduct.benefits && currentProduct.benefits.length > 0) {
+        benefitsList.innerHTML = currentProduct.benefits.map(benefit => 
+          `<li class="list-group-item"><i class="fas fa-check text-success me-2"></i>${benefit}</li>`
+        ).join('');
+      } else {
+        benefitsList.innerHTML = '<li class="list-group-item">No benefits listed</li>';
+      }
+      
+      // Display specifications
+      const specsElement = document.getElementById('modalProductSpecs');
+      if (currentProduct.specs && currentProduct.specs.length > 0) {
+        specsElement.innerHTML = currentProduct.specs.map(spec => 
+          `<span class="badge bg-light text-dark p-2 me-2 mb-2">${spec}</span>`
+        ).join('');
+      } else {
+        specsElement.innerHTML = 'No specifications available';
+      }
+      
+      // Update add to cart button state
+      const modalAddBtn = document.getElementById('modalAddToCartBtn');
+      const isInCart = cart.some(item => item.id === currentProduct.id);
+      modalAddBtn.innerHTML = isInCart ? 
+        '<i class="fas fa-check"></i> Already in Cart' : 
+        '<i class="fas fa-cart-plus"></i> Add to Cart';
+      modalAddBtn.disabled = isInCart;
+      
+      // Initialize and show modal
+      const modal = new bootstrap.Modal(document.getElementById('productModal'));
+      modal.show();
+    }
+
+    // Add current product to cart from modal
+    function addCurrentToCart() {
+      if (currentProduct) {
+        addToCart(currentProduct.id);
+        
+        // Update button state
+        const modalAddBtn = document.getElementById('modalAddToCartBtn');
+        modalAddBtn.innerHTML = '<i class="fas fa-check"></i> Already in Cart';
+        modalAddBtn.disabled = true;
+      }
+    }
+
+    // Checkout replaced by proceedToPayment
+    function checkout() {
+      proceedToPayment();
+    }
+
+    // Helper Functions
+    function updateCartCount() {
+      const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      const cartCountElement = document.getElementById('cart-count');
+      const cartCountNavElement = document.getElementById('cart-count-nav');
+      
+      if (cartCountElement) cartCountElement.textContent = count;
+      if (cartCountNavElement) cartCountNavElement.textContent = count;
+      
+      // Update cart modal if it's open
+      const cartModal = document.getElementById('cartModal');
+      if (cartModal && cartModal.classList.contains('show')) {
+        displayCartModal();
+      }
+    }
+
+    function saveCart() {
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    function getCurrentDisplayedProducts() {
+      const activeFilter = document.querySelector('.filter-btn.active')?.textContent || 'All Products';
+      const searchInput = document.getElementById('search-input');
+      const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+      
+      let displayedProducts = products;
+      
+      if (activeFilter !== 'All Products') {
+        displayedProducts = products.filter(p => p.type === activeFilter);
+      }
+      
+      if (searchTerm) {
+        displayedProducts = displayedProducts.filter(product => 
+          product.name.toLowerCase().includes(searchTerm) || 
+          product.description.toLowerCase().includes(searchTerm) ||
+          product.type.toLowerCase().includes(searchTerm)
+        );
+      }
+      
+      return displayedProducts;
+    }
+
+    function showToast(message) {
+      // Create toast notification
+      const toast = document.createElement('div');
+      toast.className = 'toast-notification';
+      toast.innerHTML = `
+        <i class="fas fa-check-circle me-2"></i>
+        ${message}
+      `;
+      
+      document.body.appendChild(toast);
+      
+      // Remove toast after 3 seconds
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    // Add event listener for cart modal
+    const cartModalElement = document.getElementById('cartModal');
+    if (cartModalElement) {
+      cartModalElement.addEventListener('show.bs.modal', function() {
+        displayCartModal();
+      });
+    }
+
+    // Make functions globally available
+    window.showHomePage = showHomePage;
+    window.showShopPage = showShopPage;
+    window.showAboutPage = showAboutPage;
+    window.showContactPage = showContactPage;
+    window.filterProducts = filterProducts;
+    window.addToCart = addToCart;
+    window.removeFromCart = removeFromCart;
+    window.updateQuantity = updateQuantity;
+    window.clearCart = clearCart;
+    window.viewProductDetails = viewProductDetails;
+    window.addCurrentToCart = addCurrentToCart;
+    window.checkout = checkout;
+    window.submitContactForm = submitContactForm;
+    window.quickView = quickView;
+    window.addFromQuickView = addFromQuickView;
+    window.selectPaymentMethod = selectPaymentMethod;
+    window.proceedToPayment = proceedToPayment;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

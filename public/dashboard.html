@@ -1,0 +1,1158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>FitLife · ELITE GYM · INTERACTIVE TRACKER</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- 100% ORIGINAL BACKGROUND & CORE STYLES (PRESERVED) ---------- */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      color: white;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    #bg-image, #bg-image-next {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -2;
+      opacity: 1;
+      transition: opacity 2s ease-in-out;
+    }
+    #bg-image-next { z-index: -1; opacity: 0; }
+    aside.sidebar { display: none; }
+    .main-content {
+      margin-left: 0;
+      padding: 20px;
+      width: 100%;
+      max-width: 1450px;
+      margin: 0 auto;
+    }
+    .card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      backdrop-filter: blur(6px);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .header-profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .header-profile img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+    }
+    header h1, header p { margin: 0; }
+    header p { margin-top: 5px; }
+    .day {
+      padding: 10px 15px;
+      background-color: #eee;
+      color: #000;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .day:hover { background-color: #ffa94d; }
+    .day.active { background-color: #ff6600; color: #fff; }
+    .hidden { display: none; }
+    .progress-circle {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: conic-gradient(#ff6600 calc(var(--value, 0) * 1deg), #333 0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+    .nutrition-grid, .meal-plan, .progress-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .tip, .meal, .metric {
+      flex: 1 1 200px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+    }
+    /* AI FLOATING BUTTON – 100% ORIGINAL */
+    .ai-chat-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(76, 201, 240, 0.4);
+      transition: all 0.3s ease;
+      z-index: 1000;
+      text-decoration: none;
+    }
+    .ai-chat-float:hover { transform: scale(1.1); }
+    .ai-chat-float::after {
+      content: "AI Assistant";
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      white-space: nowrap;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .ai-chat-float:hover::after { opacity: 1; }
+    /* ===== THREE LINES LEFT TOP CORNER ===== */
+    .top-left-menu {
+      position: fixed;
+      top: 27px;
+      left: 15px;
+      width: 30px;
+      height: 50px;
+      background: rgba(86, 86, 99, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 2000;
+      border: 1px solid rgba(32, 238, 114, 0.504);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.674);
+      transition: 0.2s;
+    }
+    .top-left-menu:hover {
+      background: rgba(255, 102, 0, 0.8);
+      transform: scale(1.05);
+    }
+    /* DRAWER */
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: -380px;
+      width: 290px;
+      height: 100vh;
+      background: rgba(30, 28, 32, 0.96);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 10px 0 35px rgba(79, 215, 227, 0.7);
+      z-index: 2100;
+      transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 28px 20px;
+      display: flex;
+      flex-direction: column;
+      color: white;
+      overflow-y: auto;
+    }
+    .drawer.open { left: 0; }
+    .drawer-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(5px);
+      z-index: 2050;
+      display: none;
+    }
+    .drawer-overlay.active { display: block; }
+    .drawer-profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      margin-bottom: 24px;
+    }
+    .drawer-profile img {
+      width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 3px solid #ff9966;
+    }
+    .drawer-profile-text h3 { margin: 0; font-size: 1.25rem; }
+    .drawer-profile-text p { margin: 4px 0 0; opacity: 0.8; font-size: 0.85rem; }
+    .drawer-nav ul { list-style: none; padding: 0; margin: 0; }
+    .drawer-nav ul li { margin-bottom: 8px; }
+    .drawer-nav ul li a {
+      color: rgb(249, 249, 249); text-decoration: none; display: flex; align-items: center; gap: 16px;
+      padding: 12px 18px; border-radius: 12px; transition: all 0.25s ease;
+      font-size: 1.05rem; background: rgba(255,255,255,0.02);
+    }
+    .drawer-nav ul li a:hover { background: rgba(255,255,255,0.1); transform: translateX(6px); }
+    .drawer-nav ul li a.ai-chat-drawer {
+      background: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+      margin-top: 10px;
+    }
+    .drawer-nav ul li a.ai-chat-drawer:hover {
+      background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(76, 201, 240, 0.4);
+    }
+    .drawer-footer { margin-top: auto; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.15); }
+    .drawer-footer a {
+      color: white; text-decoration: none; display: flex; align-items: center;
+      gap: 14px; padding: 12px 18px; border-radius: 12px; transition: 0.2s;
+    }
+    .drawer-footer a:hover { background: rgba(255, 70, 70, 0.25); }
+    /* ---------- EXTRA GYM CONTENT ---------- */
+    .gym-stats-advanced, .lifting-leaderboard, .exercise-database, .recovery-zone, .nutrition-gym, .monthly-challenge {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .gym-card, .record-card, .exercise-card, .recovery-card, .nutrition-gym-card, .challenge-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 18px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      transition: 0.2s;
+    }
+    .gym-card:hover, .record-card:hover { background: rgba(255,102,0,0.1); border-color: #ff9966; }
+    .progress-bar-bg {
+      width: 100%; height: 10px; background: #2d2d2d; border-radius: 10px; margin-top: 12px;
+    }
+    .progress-fill {
+      height: 10px; background: #ff6600; border-radius: 10px; width: 0%;
+    }
+    .badge {
+      background: rgba(255,102,0,0.3); padding: 6px 16px; border-radius: 30px; font-size: 0.8rem;
+      font-weight: 600; display: inline-block; border: 1px solid rgba(255,255,255,0.2);
+    }
+    .hr-divider {
+      height: 2px; background: linear-gradient(90deg, transparent, #ff9966, transparent);
+      margin: 30px 0 10px; opacity: 0.5;
+    }
+    .quick-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 8px;
+    }
+    .quick-nav a {
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255, 153, 102, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+    .quick-nav a:hover {
+      background: rgba(255, 102, 0, 0.45);
+      border-color: #ff9966;
+      transform: translateY(-1px);
+    }
+    /* ---------- FUNCTIONAL INPUT STYLES ---------- */
+    .editable-input {
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #ff9966;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      width: 80px;
+      text-align: center;
+      font-weight: 600;
+    }
+    .editable-input:focus {
+      outline: none;
+      background: rgba(255,102,0,0.2);
+    }
+    .metric-controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .control-btn {
+      background: rgba(255,102,0,0.3);
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+    .control-btn:hover {
+      background: #ff6600;
+      transform: scale(1.1);
+    }
+    .month-selector {
+      background: rgba(0,0,0,0.4);
+      color: white;
+      border: 1px solid #ff9966;
+      padding: 8px 16px;
+      border-radius: 30px;
+      margin-bottom: 15px;
+    }
+    .step-counter {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .step-btn {
+      background: rgba(255,102,0,0.3);
+      border: 1px solid #ff9966;
+      color: white;
+      padding: 8px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .step-btn:hover {
+      background: #ff6600;
+    }
+    /* ---------- SETTINGS PANEL (ORIGINAL) ---------- */
+    .settings-panel {
+      background: rgba(20, 20, 30, 0.9);
+      backdrop-filter: blur(12px);
+      border: 1px solid #ff9966;
+      border-radius: 24px;
+      padding: 24px;
+      margin-top: 30px;
+    }
+    .settings-title {
+      font-size: 1.8rem; font-weight: 600; margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+    }
+    .profile-edit-section {
+      display: flex; flex-wrap: wrap; gap: 30px; align-items: flex-start;
+    }
+    .profile-avatar-large {
+      width: 100px; height: 100px; border-radius: 50%; border: 4px solid #ff9966;
+      object-fit: cover; background: #333;
+    }
+    .profile-fields {
+      flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .field-group {
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .field-group label {
+      font-size: 0.85rem; opacity: 0.9; letter-spacing: 0.5px;
+    }
+    .settings-input {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 40px; padding: 12px 18px; color: white; font-size: 1rem;
+      transition: 0.2s; width: 100%;
+    }
+    .settings-input:focus {
+      border-color: #ff9966; outline: none; background: rgba(0,0,0,0.5);
+    }
+    .btn-orange {
+      background: #ff6600; border: none; padding: 12px 28px; border-radius: 40px;
+      color: white; font-weight: 600; cursor: pointer; transition: 0.2s;
+      display: inline-flex; align-items: center; gap: 12px;
+    }
+    .btn-orange:hover { background: #e65c00; transform: scale(1.02); }
+    .btn-outline {
+      background: transparent; border: 2px solid rgba(255,102,102,0.7); padding: 10px 24px;
+      border-radius: 40px; color: white; font-weight: 600; cursor: pointer;
+    }
+    .close-settings-btn {
+      background: transparent; border: 1px solid #ff9966; color: white;
+      border-radius: 40px; padding: 8px 20px; cursor: pointer; transition: 0.2s;
+    }
+    .close-settings-btn:hover { background: rgba(255,102,0,0.3); }
+    .toggle-switch {
+      position: relative; width: 50px; height: 26px; background: #3a3a4a; border-radius: 40px;
+      display: inline-block; transition: 0.2s; cursor: pointer;
+    }
+    .toggle-switch:after {
+      content: ''; position: absolute; width: 22px; height: 22px; background: white;
+      border-radius: 50%; top: 2px; left: 2px; transition: 0.2s;
+    }
+    .toggle-active { background: #ff6600; }
+    .toggle-active:after { left: 26px; }
+    /* ---------- END CUSTOM STYLES ---------- */
+  </style>
+</head>
+<body>
+  <!-- BACKGROUND IMAGE LAYERS -->
+  <div id="bg-image"></div>
+  <div id="bg-image-next"></div>
+  
+  <!-- AI FLOATING BUTTON -->
+<a href="ai.html" class="ai-chat-float"><i class="fas fa-robot"></i></a>
+
+  <!-- THREE LINES LEFT TOP CORNER -->
+  <div class="top-left-menu" id="menuBars"><i class="fas fa-bars"></i></div>
+
+  <!-- OVERLAY + DRAWER -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-profile" id="drawerProfileContainer">
+      <img src="https://hips.hearstapps.com/hmg-prod/images/mh-3-23-coleman-1648059910.png?crop=0.5xw:1xh;center,top&resize=1200:*" alt="User" id="drawerAvatarImg">
+      <div class="drawer-profile-text"><h3 id="drawerUserName">Alex Rivera</h3><p><i class="fas fa-map-marker-alt"></i> FitZone</p></div>
+    </div>
+    <nav class="drawer-nav">
+      <ul>
+        <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+        <li><a href="workouts.html"><i class="fas fa-video"></i> WorkoutVideo</a></li>
+        <li><a href="nutrition.htl.html"><i class="fas fa-utensils"></i> Nutrition</a></li>
+        <li><a href="product1.html"><i class="fas fa-capsules"></i> Products</a></li>
+        <li><a href="#progress-section"><i class="fas fa-chart-line"></i> Progress</a></li>
+        <li><a href="membership.html"><i class="fas fa-crown"></i> Membership</a></li>
+        <li><a href="#card"><i class="fas fa-crown"></i> Profile Settings</a></li>
+        <li><a href="ai.html" class="ai-chat-drawer"><i class="fas fa-robot"></i> AI Assistant</a></li>
+      </ul>
+    </nav>
+    <div class="drawer-footer"><a href="#" id="drawerLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+  </div>
+
+  <!-- MAIN DASHBOARD -->
+  <div class="dashboard-container">
+    <main class="main-content">
+
+      <!-- WELCOME HEADER -->
+      <header id="welcome-section">
+        <div class="header-profile">
+          <img src="https://hips.hearstapps.com/hmg-prod/images/mh-3-23-coleman-1648059910.png?crop=0.5xw:1xh;center,top&resize=1200:*" alt="User Profile" id="headerProfileImg">
+          <div>
+            <h1><i class="fas fa-dumbbell"></i> Welcome, <span id="usernameDisplay">Alex</span></h1>
+            <p>Your fitness journey starts now. ELITE GYM APPLICATION</p>
+          </div>
+        </div>
+      </header>
+      <nav class="quick-nav" aria-label="Section guide">
+        <a href="#workout-section">Workout Plan</a>
+        <a href="#nutrition-section">Nutrition Tips</a>
+        <a href="#progress-section">Progress Tracker</a>
+        <a href="#powerlifting-section">Powerlifting & Strongman Metrics</a>
+        <a href="#recovery-section">Recovery & Mobility</a>
+      </nav>
+
+      <!-- WORKOUT SECTION -->
+      <section id="workout-section" class="workout-plan card">
+        <h2><i class="fas fa-dumbbell"></i> Sample Workout Plan</h2>
+        <div class="workout-days">
+          <div class="day active" data-day="monday">Monday</div>
+          <div class="day" data-day="tuesday">Tuesday</div>
+          <div class="day" data-day="wednesday">Wednesday</div>
+          <div class="day" data-day="thursday">Thursday</div>
+          <div class="day" data-day="friday">Friday</div>
+        </div>
+      </section>
+      <div class="workout-day-cards">
+        <div class="workout-card card" id="monday-exercises"><h3>Strength Training (Upper Body)</h3><ul><li>Bench Press: 4 sets x 8 reps</li><li>Pull-ups: 3 sets x max reps</li><li>Overhead Press: 3 sets x 10 reps</li><li>Barbell Rows: 3 sets x 10 reps</li><li>Bicep Curls: 3 sets x 12 reps</li></ul></div>
+        <div class="workout-card card hidden" id="tuesday-exercises"><h3>Cardio & Core</h3><ul><li>Running: 30 minutes</li><li>Plank: 3 sets x 60 seconds</li><li>Russian Twists: 3 sets x 20 reps</li><li>Leg Raises: 3 sets x 15 reps</li></ul></div>
+        <div class="workout-card card hidden" id="wednesday-exercises"><h3>Strength Training (Lower Body)</h3><ul><li>Squats: 4 sets x 8 reps</li><li>Deadlifts: 3 sets x 6 reps</li><li>Lunges: 3 sets x 10 reps per leg</li><li>Calf Raises: 3 sets x 15 reps</li></ul></div>
+        <div class="workout-card card hidden" id="thursday-exercises"><h3>Active Recovery</h3><ul><li>Yoga or Stretching: 30 minutes</li><li>Light Walking: 20 minutes</li><li>Foam Rolling: Full body</li></ul></div>
+        <div class="workout-card card hidden" id="friday-exercises"><h3>Full Body Workout</h3><ul><li>Push-ups: 15 reps</li><li>Bodyweight Squats: 20 reps</li><li>Bent-over Rows: 12 reps</li><li>Plank: 45 seconds</li><li>Jumping Jacks: 30 seconds</li></ul></div>
+      </div>
+
+      <!-- NUTRITION SECTION -->
+      <section id="nutrition-section" class="nutrition-tips card">
+        <h2><i class="fas fa-apple-alt"></i> Nutrition Tips</h2>
+        <div class="nutrition-grid">
+          <div class="tip"><h3>Protein Intake</h3><p>Aim for 0.8–1g of protein per pound of body weight.</p></div>
+          <div class="tip"><h3>Hydration</h3><p>Drink half your body weight in oz of water daily.</p></div>
+          <div class="tip"><h3>Whole Foods</h3><p>Focus on whole, unprocessed foods.</p></div>
+          <div class="tip"><h3>Meal Timing</h3><p>Eat every 3–4 hours to sustain energy.</p></div>
+        </div>
+        <div class="sample-meal"><h3>Sample Meal Plan</h3>
+          <div class="meal-plan">
+            <div class="meal"><h4>Breakfast</h4><p>Oatmeal with berries and protein.</p></div>
+            <div class="meal"><h4>Lunch</h4><p>Grilled chicken with quinoa and veggies.</p></div>
+            <div class="meal"><h4>Snack</h4><p>Greek yogurt with nuts.</p></div>
+            <div class="meal"><h4>Dinner</h4><p>Salmon with sweet potato and broccoli.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRESS TRACKER - FULLY FUNCTIONAL -->
+      <section id="progress-section" class="progress-tracker card">
+        <h2><i class="fas fa-chart-line"></i> Progress Tracker (Custom Inputs)</h2>
+        <div class="progress-metrics">
+          <div class="metric">
+            <h3>Workouts This Week</h3>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustWorkout(-1)">-</button>
+              <span id="workoutCount">3</span>/<span id="workoutGoal">5</span>
+              <button class="control-btn" onclick="adjustWorkout(1)">+</button>
+            </div>
+            <input type="number" id="workoutGoalInput" class="editable-input" value="5" min="1" max="7" onchange="updateWorkoutGoal()">
+            <div class="progress-circle" id="workoutProgress" data-value="216"><span id="workoutPercent">60%</span></div>
+          </div>
+          <div class="metric">
+            <h3>Weight</h3>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustWeight(-0.5)">-</button>
+              <span id="currentWeight">165</span> <small>lbs</small>
+              <button class="control-btn" onclick="adjustWeight(0.5)">+</button>
+            </div>
+            <br><small>Goal: <input type="number" id="weightGoal" class="editable-input" value="160" step="0.5" onchange="updateWeightProgress()"> lbs</small>
+            <div><span id="weightChange">Down 5lbs this month</span></div>
+          </div>
+          <div class="metric">
+            <h3>Water Intake</h3>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustWater(-8)">-</button>
+              <span id="waterIntake">64</span>/<span id="waterGoal">80</span> oz
+              <button class="control-btn" onclick="adjustWater(8)">+</button>
+            </div>
+            <input type="number" id="waterGoalInput" class="editable-input" value="80" step="8" onchange="updateWaterGoal()">
+            <div class="progress-circle" id="waterProgress" data-value="288"><span id="waterPercent">80%</span></div>
+          </div>
+        </div>
+        <div class="progress-goals">
+          <h3>Current Goals (Click to toggle)</h3>
+          <ul id="goalsList">
+            <li><input type="checkbox" id="goal1" checked onchange="updateGoalProgress()"><label for="goal1"> Work out 5 days this week</label></li>
+            <li><input type="checkbox" id="goal2" onchange="updateGoalProgress()"><label for="goal2"> Drink 80oz of water daily</label></li>
+            <li><input type="checkbox" id="goal3" onchange="updateGoalProgress()"><label for="goal3"> Increase bench press by 10lbs</label></li>
+            <li><input type="checkbox" id="goal4" checked onchange="updateGoalProgress()"><label for="goal4"> Track all meals this week</label></li>
+          </ul>
+          <div>Goals completed: <span id="goalsCompleted">2</span>/4</div>
+        </div>
+        <div class="bmi-calculator" style="margin-top: 30px;">
+          <h3>Calculate Your BMI</h3>
+          <form id="bmiForm" onsubmit="calculateBMI(event)">
+            <label for="bmiWeight">Weight (kg):</label>
+            <input type="number" id="bmiWeight" required style="margin-right:10px; padding:5px; background:rgba(0,0,0,0.5); color:white; border:1px solid #ff9966;" />
+            <label for="bmiHeight">Height (cm):</label>
+            <input type="number" id="bmiHeight" required style="margin-right:10px; padding:5px; background:rgba(0,0,0,0.5); color:white; border:1px solid #ff9966;" />
+            <button type="submit" style="padding:5px 10px; background:#ff6600; color:white; border:none; border-radius:5px;">Calculate</button>
+          </form>
+          <div id="bmiResult" style="margin-top:15px; font-weight:bold;"></div>
+        </div>
+      </section>
+
+      <!-- POWERLIFTING & STRONGMAN METRICS - FULLY FUNCTIONAL -->
+      <section id="powerlifting-section" class="card">
+        <h2><i class="fas fa-chart-pie"></i> Powerlifting & Strongman Metrics (Editable)</h2>
+        <div class="gym-stats-advanced" id="powerliftingMetrics">
+          <div class="gym-card">
+            <i class="fas fa-weight-hanging" style="font-size:2rem; color:#ff9966;"></i>
+            <h3>Total Tonnage</h3>
+            <p style="font-size:1.9rem; font-weight:700;"><span id="totalTonnage">18450</span> kg</p>
+            <small>↑ <span id="tonnageIncrease">8</span>%</small>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustTonnage(-500)">-500</button>
+              <button class="control-btn" onclick="adjustTonnage(500)">+500</button>
+              <input type="number" id="tonnageInput" class="editable-input" value="18450" step="100" onchange="updateTonnage()">
+            </div>
+            <div class="progress-bar-bg"><div class="progress-fill" id="tonnageBar" style="width:78%;"></div></div>
+          </div>
+          <div class="gym-card">
+            <i class="fas fa-bolt" style="font-size:2rem; color:#ffcc66;"></i>
+            <h3>Estimated 1RM</h3>
+            <p>
+              <span style="font-size:1.6rem; font-weight:700;">Bench <span id="bench1RM">130</span>kg</span><br>
+              Squat <span id="squat1RM">170</span>kg · Deadlift <span id="deadlift1RM">210</span>kg
+            </p>
+            <div class="metric-controls">
+              <label>Bench: <input type="number" id="benchInput" class="editable-input" value="130" onchange="update1RM()"></label>
+              <label>Squat: <input type="number" id="squatInput" class="editable-input" value="170" onchange="update1RM()"></label>
+              <label>Deadlift: <input type="number" id="deadliftInput" class="editable-input" value="210" onchange="update1RM()"></label>
+            </div>
+          </div>
+          <div class="gym-card">
+            <i class="fas fa-heartbeat" style="font-size:2rem; color:#ff6666;"></i>
+            <h3>Intensity (RPE)</h3>
+            <p>Avg <span id="avgRPE">7.8</span> · Peak <span id="peakRPE">9.2</span></p>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustRPE(-0.1)">-</button>
+              <button class="control-btn" onclick="adjustRPE(0.1)">+</button>
+            </div>
+            <div class="badge" id="rpeChange">+6% vs last cycle</div>
+          </div>
+          <div class="gym-card">
+            <i class="fas fa-clock" style="font-size:2rem;"></i>
+            <h3>Rest periods</h3>
+            <p>
+              <span id="restCompound">3.25</span> min (compound) · 
+              <span id="restAccessory">2.0</span> min (accessory)
+            </p>
+            <div class="metric-controls">
+              <label>Compound: <input type="number" id="restCompoundInput" class="editable-input" value="3.25" step="0.25" onchange="updateRest()"></label>
+              <label>Accessory: <input type="number" id="restAccessoryInput" class="editable-input" value="2.0" step="0.25" onchange="updateRest()"></label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GYM LEADERBOARD - FUNCTIONAL -->
+      <section class="card">
+        <h2><i class="fas fa-trophy"></i> Gym Leaderboard – 2026 (Adjustable Goals)</h2>
+        <div class="lifting-leaderboard" id="leaderboard">
+          <div class="record-card">
+            <h3>🏆 Bench Press</h3>
+            <p style="font-size:2rem;"><span id="benchCurrent">140</span> kg</p>
+            <small>Goal: <input type="number" id="benchGoal" class="editable-input" value="150" onchange="updateLeaderboard()"> kg</small>
+            <div class="progress-bar-bg"><div class="progress-fill" id="benchProgress" style="width:93%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustLift('bench', -5)">-5</button>
+              <button class="control-btn" onclick="adjustLift('bench', 5)">+5</button>
+            </div>
+          </div>
+          <div class="record-card">
+            <h3>🏆 Squat (raw)</h3>
+            <p style="font-size:2rem;"><span id="squatCurrent">182</span> kg</p>
+            <small>Goal: <input type="number" id="squatGoal" class="editable-input" value="200" onchange="updateLeaderboard()"> kg</small>
+            <div class="progress-bar-bg"><div class="progress-fill" id="squatProgress" style="width:91%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustLift('squat', -5)">-5</button>
+              <button class="control-btn" onclick="adjustLift('squat', 5)">+5</button>
+            </div>
+          </div>
+          <div class="record-card">
+            <h3>🏆 Deadlift</h3>
+            <p style="font-size:2rem;"><span id="deadliftCurrent">225</span> kg</p>
+            <small>Goal: <input type="number" id="deadliftGoal" class="editable-input" value="240" onchange="updateLeaderboard()"> kg</small>
+            <div class="progress-bar-bg"><div class="progress-fill" id="deadliftProgress" style="width:94%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustLift('deadlift', -5)">-5</button>
+              <button class="control-btn" onclick="adjustLift('deadlift', 5)">+5</button>
+            </div>
+          </div>
+          <div class="record-card">
+            <h3>🏆 Strict OHP</h3>
+            <p style="font-size:2rem;"><span id="ohpCurrent">82.5</span> kg</p>
+            <small>Goal: <input type="number" id="ohpGoal" class="editable-input" value="90" step="2.5" onchange="updateLeaderboard()"> kg</small>
+            <div class="progress-bar-bg"><div class="progress-fill" id="ohpProgress" style="width:92%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustLift('ohp', -2.5)">-2.5</button>
+              <button class="control-btn" onclick="adjustLift('ohp', 2.5)">+2.5</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXERCISE DATABASE (static) -->
+      <section class="card">
+        <h2><i class="fas fa-dumbbell"></i> Exercise Library – 200+ movements</h2>
+        <div class="exercise-database">
+          <div class="exercise-card"><i class="fas fa-check-circle" style="color:#32cd32;"></i> <strong>Barbell back squat</strong> – high bar · low bar</div>
+          <div class="exercise-card"><i class="fas fa-check-circle" style="color:#32cd32;"></i> <strong>Conventional deadlift</strong> – sumo variant</div>
+          <div class="exercise-card"><i class="fas fa-check-circle" style="color:#32cd32;"></i> <strong>Weighted dip</strong> – +45lbs 3x8</div>
+          <div class="exercise-card"><i class="fas fa-check-circle" style="color:#32cd32;"></i> <strong>Barbell hip thrust</strong> – glute focus</div>
+          <div class="exercise-card"><i class="fas fa-check-circle" style="color:#32cd32;"></i> <strong>Landmine press</strong> – unilateral</div>
+          <div class="exercise-card"><i class="fas fa-check-circle" style="color:#32cd32;"></i> <strong>Zercher squat</strong> – core stability</div>
+        </div>
+      </section>
+
+      <!-- RECOVERY & MOBILITY (static) -->
+      <section id="recovery-section" class="card">
+        <h2><i class="fas fa-spa"></i> Recovery & Mobility Hub</h2>
+        <div class="recovery-zone">
+          <div class="recovery-card"><i class="fas fa-hot-tub"></i> <h3>Contrast therapy</h3><p>3x week · 2min cold / 3min hot</p></div>
+          <div class="recovery-card"><i class="fas fa-hand-holding-heart"></i> <h3>Stretching</h3><p>Lower body: 12min · Upper body: 8min</p></div>
+          <div class="recovery-card"><i class="fas fa-bed"></i> <h3>Sleep tracker</h3><p>7h58 avg · HRV 68ms</p><div class="badge">+12% this month</div></div>
+          <div class="recovery-card"><i class="fas fa-bicycle"></i> <h3>Active recovery</h3><p>Saturday: 40min zone2 cycling</p></div>
+        </div>
+      </section>
+
+      <!-- NUTRITION GYM (static) -->
+      <section class="card">
+        <h2><i class="fas fa-utensils"></i> Precision Nutrition – muscle gain</h2>
+        <div class="nutrition-gym">
+          <div class="nutrition-gym-card"><h3>🍗 Protein timing</h3><p>40g per meal · 4x daily · 1.6g/kg</p></div>
+          <div class="nutrition-gym-card"><h3>🥑 Fats</h3><p>0.9g/kg · mainly mono/poly</p></div>
+          <div class="nutrition-gym-card"><h3>🍚 Carbs</h3><p>5g/kg training days · 4g/kg rest</p></div>
+          <div class="nutrition-gym-card"><h3>💊 Supplements</h3><p>Creatine 5g · Vit D3 2000IU · Omega-3 2g</p></div>
+        </div>
+      </section>
+
+      <!-- MONTHLY CHALLENGE WITH CALENDAR -->
+      <section class="card">
+        <h2><i class="fas fa-fire"></i> <span id="currentMonth">March</span> Challenge – Custom Goals</h2>
+        <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 15px;">
+          <label for="monthPicker">Select Month: </label>
+          <input type="month" id="monthPicker" class="month-selector" value="2026-03" onchange="updateChallengeMonth()">
+          <i class="fas fa-calendar-alt" style="color:#ff9966; font-size:1.5rem;"></i>
+        </div>
+        <div class="monthly-challenge" id="monthlyChallenge">
+          <div class="challenge-card">
+            <h3>🔥 Push-ups</h3>
+            <p><span id="pushupCurrent">1240</span> / <input type="number" id="pushupGoal" class="editable-input" value="2000" onchange="updateChallengeProgress()"></p>
+            <div class="progress-bar-bg"><div class="progress-fill" id="pushupProgress" style="width:62%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustChallenge('pushup', -50)">-50</button>
+              <button class="control-btn" onclick="adjustChallenge('pushup', 50)">+50</button>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <h3>🔥 Pull-ups</h3>
+            <p><span id="pullupCurrent">380</span> / <input type="number" id="pullupGoal" class="editable-input" value="600" onchange="updateChallengeProgress()"></p>
+            <div class="progress-bar-bg"><div class="progress-fill" id="pullupProgress" style="width:63%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustChallenge('pullup', -20)">-20</button>
+              <button class="control-btn" onclick="adjustChallenge('pullup', 20)">+20</button>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <h3>🔥 Squats</h3>
+            <p><span id="squatChallengeCurrent">1800</span> / <input type="number" id="squatChallengeGoal" class="editable-input" value="2400" onchange="updateChallengeProgress()"></p>
+            <div class="progress-bar-bg"><div class="progress-fill" id="squatChallengeProgress" style="width:75%;"></div></div>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustChallenge('squat', -50)">-50</button>
+              <button class="control-btn" onclick="adjustChallenge('squat', 50)">+50</button>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <h3>🔥 Streak</h3>
+            <p><span id="streakCurrent">14</span> days · Goal: <input type="number" id="streakGoal" class="editable-input" value="30" onchange="updateChallengeProgress()"> days</p>
+            <i class="fas fa-crown" style="color:gold;"></i>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustChallenge('streak', -1)">-1</button>
+              <button class="control-btn" onclick="adjustChallenge('streak', 1)">+1</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FITZONE ACHIEVEMENTS WITH STEP COUNTER -->
+      <section class="card">
+        <h2><i class="fas fa-medal"></i> FitZone achievements</h2>
+        <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:20px;">
+          <span class="badge"><i class="fas fa-check"></i> 1000lb club</span>
+          <span class="badge"><i class="fas fa-check"></i> 500 workouts</span>
+          <span class="badge"><i class="fas fa-check"></i> 12 week streak</span>
+          <span class="badge"><i class="fas fa-check"></i> Body fat ↓4%</span>
+        </div>
+        
+        <!-- STEP COUNTER FUNCTIONAL -->
+        <div style="background:rgba(255,102,0,0.2); padding:20px; border-radius:20px;">
+          <h3><i class="fas fa-shoe-prints"></i> Daily Step Counter</h3>
+          <div class="step-counter">
+            <div style="font-size:2.5rem; font-weight:700;"><span id="stepCount">8742</span> steps</div>
+            <div>
+              <button class="step-btn" onclick="addSteps(100)"><i class="fas fa-plus"></i> 100</button>
+              <button class="step-btn" onclick="addSteps(1000)"><i class="fas fa-plus"></i> 1000</button>
+              <button class="step-btn" onclick="resetSteps()"><i class="fas fa-undo"></i> Reset</button>
+            </div>
+            <div>Goal: <input type="number" id="stepGoal" class="editable-input" value="10000" onchange="updateStepProgress()"> steps</div>
+          </div>
+          <div class="progress-bar-bg" style="margin-top:10px;">
+            <div class="progress-fill" id="stepProgress" style="width:87%;"></div>
+          </div>
+          <div id="stepMessage" style="margin-top:10px;">🏆 <span id="stepPercent">87%</span> of daily goal - <span id="stepRemaining">1258</span> steps to go!</div>
+        </div>
+      </section>
+
+      <!-- 2026 YEARLY GOAL - FUNCTIONAL -->
+      <section class="card">
+        <h2><i class="fas fa-flag-checkered"></i> 2026 yearly goal</h2>
+        <div style="display:flex; align-items:center; gap:30px; flex-wrap:wrap;">
+          <div class="progress-circle" id="yearlyProgressCircle" data-value="270" style="width:100px; height:100px;"><span id="yearlyPercent">75%</span></div>
+          <div>
+            <h3>Total tonnage target: <input type="number" id="yearlyGoal" class="editable-input" value="1000000" step="10000" onchange="updateYearlyGoal()"> kg</h3>
+            <p><span id="yearlyCurrent">750450</span> kg lifted · <span id="yearlyPercentText">75%</span> complete</p>
+            <div class="metric-controls">
+              <button class="control-btn" onclick="adjustYearlyTonnage(-5000)">-5k</button>
+              <button class="control-btn" onclick="adjustYearlyTonnage(5000)">+5k</button>
+              <button class="control-btn" onclick="adjustYearlyTonnage(-10000)">-10k</button>
+              <button class="control-btn" onclick="adjustYearlyTonnage(10000)">+10k</button>
+            </div>
+            <div class="progress-bar-bg" style="width:250px;">
+              <div class="progress-fill" id="yearlyProgressBar" style="width:75%;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AI COACH INSIGHTS (static) -->
+      <section class="card">
+        <h2><i class="fas fa-robot"></i> AI Coach insights</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap:20px;">
+          <div><i class="fas fa-arrow-up" style="color:#4caf50;"></i> Increase deadlift volume by 12% this week</div>
+          <div><i class="fas fa-clock"></i> Reduce rest on accessories to 75s</div>
+          <div><i class="fas fa-apple-alt"></i> Add 50g carbs pre-workout</div>
+          <div><i class="fas fa-bed"></i> Sleep consistency: +1h on weekends</div>
+        </div>
+      </section>
+
+      <!-- MEMBERSHIP PANEL (hidden by default) -->
+      
+      <!-- SETTINGS PANEL (hidden by default) -->
+      <section id="settings-panel-section" class="settings-panel hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="settings-title"><i class="fas fa-cog" style="color:#ff9966;"></i> Account Settings & Profile</div>
+          <button id="closeSettingsBtn" class="close-settings-btn"><i class="fas fa-times"></i> Hide</button>
+        </div>
+        <div class="profile-edit-section">
+          <div style="display: flex; flex-direction: column; align-items: center;">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/mh-3-23-coleman-1648059910.png?crop=0.5xw:1xh;center,top&resize=1200:*" alt="Avatar" class="profile-avatar-large" id="settingsAvatarPreview">
+            <div style="margin-top: 12px;"><input type="file" id="avatarFileInput" accept="image/*" style="display: none;" onchange="updateAvatar(event)"><button class="btn-outline" id="changeAvatarBtn" onclick="document.getElementById('avatarFileInput').click();"><i class="fas fa-camera"></i> Change photo</button></div>
+          </div>
+          <div class="profile-fields">
+            <div class="field-group"><label><i class="fas fa-user"></i> Full name</label><input type="text" id="profileNameInput" class="settings-input" value="Alex Rivera"></div>
+            <div class="field-group"><label><i class="fas fa-map-marker-alt"></i> Location</label><input type="text" id="profileLocationInput" class="settings-input" value="FitZone"></div>
+            <div class="field-group"><label><i class="fas fa-calendar"></i> Birth year</label><input type="number" id="profileBirthYear" class="settings-input" value="1995"></div>
+            <div class="field-group"><label><i class="fas fa-flag"></i> Fitness goal</label><select id="profileGoalSelect" class="settings-input"><option>Strength</option><option selected>Hypertrophy</option><option>Fat loss</option></select></div>
+          </div>
+          <div><button class="btn-orange" id="saveProfileBtn" onclick="saveProfile()"><i class="fas fa-save"></i> Save profile</button></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // ------------------------------------------------------------
+    // BACKGROUND SLIDESHOW
+    // ------------------------------------------------------------
+    const bgImages = [
+      'https://images.unsplash.com/photo-1554284126-aa88f22d8b74',
+      'https://images.unsplash.com/photo-1605296867304-46d5465a13f1',
+      'https://images.unsplash.com/photo-1556817411-31ae72fa3ea0',
+    ];
+    let currentImageIndex = 0;
+    const bgDiv = document.getElementById('bg-image');
+    const nextBgDiv = document.getElementById('bg-image-next');
+    function preloadImages() { bgImages.forEach(src => { const img = new Image(); img.src = src; }); }
+    function changeBackgroundImage() {
+      bgDiv.style.backgroundImage = `url(${bgImages[currentImageIndex]})`;
+      nextBgDiv.style.backgroundImage = `url(${bgImages[(currentImageIndex + 1) % bgImages.length]})`;
+      nextBgDiv.style.opacity = 1;
+      setTimeout(() => { bgDiv.style.backgroundImage = nextBgDiv.style.backgroundImage; nextBgDiv.style.opacity = 0; }, 2000);
+      currentImageIndex = (currentImageIndex + 1) % bgImages.length;
+    }
+    preloadImages(); changeBackgroundImage(); setInterval(changeBackgroundImage, 8000);
+
+    // ------------------------------------------------------------
+    // DRAWER CONTROLS
+    // ------------------------------------------------------------
+    const menuBars = document.getElementById('menuBars');
+    const drawer = document.getElementById('drawer');
+    const overlay = document.getElementById('drawerOverlay');
+    function openDrawer() { drawer.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+    menuBars.addEventListener('click', openDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    document.getElementById('drawerLogoutBtn').addEventListener('click', (e) => { e.preventDefault(); alert('Logged out'); });
+
+    // WORKOUT DAY TOGGLE
+    const days = document.querySelectorAll('.day');
+    const cards = document.querySelectorAll('.workout-day-cards .card');
+    days.forEach(day => {
+      day.addEventListener('click', () => {
+        document.querySelector('.day.active')?.classList.remove('active');
+        day.classList.add('active');
+        cards.forEach(card => card.classList.add('hidden'));
+        const selectedCard = document.getElementById(`${day.dataset.day}-exercises`);
+        if(selectedCard) selectedCard.classList.remove('hidden');
+      });
+    });
+
+    // ------------------------------------------------------------
+    // PROGRESS TRACKER FUNCTIONS
+    // ------------------------------------------------------------
+    let workoutCount = 3;
+    let workoutGoal = 5;
+    let currentWeight = 165;
+    let weightGoal = 160;
+    let waterIntake = 64;
+    let waterGoal = 80;
+
+    function updateWorkoutDisplay() {
+      document.getElementById('workoutCount').textContent = workoutCount;
+      const percent = Math.min(100, Math.round((workoutCount / workoutGoal) * 100));
+      document.getElementById('workoutPercent').textContent = percent + '%';
+      const circle = document.getElementById('workoutProgress');
+      circle.style.setProperty('--value', percent * 3.6);
+    }
+    window.adjustWorkout = function(delta) {
+      workoutCount = Math.max(0, Math.min(workoutGoal, workoutCount + delta));
+      updateWorkoutDisplay();
+    };
+    window.updateWorkoutGoal = function() {
+      workoutGoal = parseInt(document.getElementById('workoutGoalInput').value) || 5;
+      if(workoutCount > workoutGoal) workoutCount = workoutGoal;
+      updateWorkoutDisplay();
+    };
+
+    window.adjustWeight = function(delta) {
+      currentWeight = Math.round((currentWeight + delta) * 10) / 10;
+      document.getElementById('currentWeight').textContent = currentWeight;
+      updateWeightProgress();
+    };
+    window.updateWeightProgress = function() {
+      weightGoal = parseFloat(document.getElementById('weightGoal').value) || 160;
+      const change = (currentWeight - weightGoal).toFixed(1);
+      document.getElementById('weightChange').textContent = change > 0 ? `Up ${change}lbs this month` : `Down ${Math.abs(change)}lbs this month`;
+    };
+
+    window.adjustWater = function(delta) {
+      waterIntake = Math.max(0, waterIntake + delta);
+      if(waterIntake > waterGoal * 1.5) waterIntake = waterGoal * 1.5;
+      document.getElementById('waterIntake').textContent = waterIntake;
+      updateWaterDisplay();
+    };
+    window.updateWaterGoal = function() {
+      waterGoal = parseInt(document.getElementById('waterGoalInput').value) || 80;
+      if(waterIntake > waterGoal * 1.5) waterIntake = waterGoal * 1.5;
+      updateWaterDisplay();
+    };
+    function updateWaterDisplay() {
+      const percent = Math.min(100, Math.round((waterIntake / waterGoal) * 100));
+      document.getElementById('waterPercent').textContent = percent + '%';
+      const circle = document.getElementById('waterProgress');
+      circle.style.setProperty('--value', percent * 3.6);
+    }
+
+    window.updateGoalProgress = function() {
+      const goals = document.querySelectorAll('#goalsList input[type="checkbox"]');
+      let completed = 0;
+      goals.forEach(g => { if(g.checked) completed++; });
+      document.getElementById('goalsCompleted').textContent = completed + '/' + goals.length;
+    };
+
+    // BMI Calculator
+    window.calculateBMI = function(e) {
+      e.preventDefault();
+      const weight = parseFloat(document.getElementById('bmiWeight').value);
+      const height = parseFloat(document.getElementById('bmiHeight').value) / 100;
+      if (!weight || !height) { document.getElementById('bmiResult').textContent = "Enter valid height and weight."; return; }
+      const bmi = weight / (height * height);
+      let status = '';
+      if (bmi < 18.5) status = 'Underweight';
+      else if (bmi < 25) status = 'Normal weight';
+      else if (bmi < 30) status = 'Overweight';
+      else status = 'Obese';
+      document.getElementById('bmiResult').textContent = `Your BMI is ${bmi.toFixed(1)} (${status})`;
+    };
+
+    // ------------------------------------------------------------
+    // POWERLIFTING METRICS
+    // ------------------------------------------------------------
+    let tonnage = 18450;
+    let bench = 130, squat = 170, deadlift = 210;
+    let avgRPE = 7.8, peakRPE = 9.2;
+
+    window.adjustTonnage = function(delta) {
+      tonnage += delta;
+      if(tonnage < 0) tonnage = 0;
+      updateTonnage();
+    };
+    window.updateTonnage = function() {
+      const input = document.getElementById('tonnageInput');
+      if(input) tonnage = parseInt(input.value) || tonnage;
+      document.getElementById('totalTonnage').textContent = tonnage;
+      const increase = Math.round((tonnage / 17000) * 100 - 100);
+      document.getElementById('tonnageIncrease').textContent = increase;
+      const barWidth = Math.min(100, Math.round((tonnage / 25000) * 100));
+      document.getElementById('tonnageBar').style.width = barWidth + '%';
+    };
+
+    window.update1RM = function() {
+      bench = parseFloat(document.getElementById('benchInput').value) || 130;
+      squat = parseFloat(document.getElementById('squatInput').value) || 170;
+      deadlift = parseFloat(document.getElementById('deadliftInput').value) || 210;
+      document.getElementById('bench1RM').textContent = bench;
+      document.getElementById('squat1RM').textContent = squat;
+      document.getElementById('deadlift1RM').textContent = deadlift;
+    };
+
+    window.adjustRPE = function(delta) {
+      avgRPE = Math.round((avgRPE + delta) * 10) / 10;
+      if(avgRPE < 5) avgRPE = 5;
+      if(avgRPE > 10) avgRPE = 10;
+      peakRPE = Math.min(10, avgRPE + 1.4);
+      document.getElementById('avgRPE').textContent = avgRPE.toFixed(1);
+      document.getElementById('peakRPE').textContent = peakRPE.toFixed(1);
+      const change = ((avgRPE - 7.8) / 7.8 * 100).toFixed(0);
+      document.getElementById('rpeChange').textContent = (change > 0 ? '+' : '') + change + '% vs last cycle';
+    };
+
+    window.updateRest = function() {
+      document.getElementById('restCompound').textContent = parseFloat(document.getElementById('restCompoundInput').value).toFixed(2);
+      document.getElementById('restAccessory').textContent = parseFloat(document.getElementById('restAccessoryInput').value).toFixed(2);
+    };
+
+    // ------------------------------------------------------------
+    // LEADERBOARD FUNCTIONS
+    // ------------------------------------------------------------
+    window.adjustLift = function(lift, delta) {
+      const currentSpan = document.getElementById(lift + 'Current');
+      let val = parseFloat(currentSpan.textContent) + delta;
+      if(val < 0) val = 0;
+      currentSpan.textContent = val;
+      updateLeaderboard();
+    };
+    window.updateLeaderboard = function() {
+      const lifts = ['bench', 'squat', 'deadlift', 'ohp'];
+      lifts.forEach(lift => {
+        const current = parseFloat(document.getElementById(lift + 'Current').textContent);
+        const goal = parseFloat(document.getElementById(lift + 'Goal').value);
+        const percent = Math.min(100, Math.round((current / goal) * 100));
+        document.getElementById(lift + 'Progress').style.width = percent + '%';
+      });
+    };
+
+    // ------------------------------------------------------------
+    // MONTHLY CHALLENGE
+    // ------------------------------------------------------------
+    window.updateChallengeMonth = function() {
+      const monthPicker = document.getElementById('monthPicker');
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      const [year, month] = monthPicker.value.split('-');
+      document.getElementById('currentMonth').textContent = monthNames[parseInt(month)-1] + ' ' + year;
+    };
+
+    window.adjustChallenge = function(exercise, delta) {
+      const currentSpan = document.getElementById(exercise + 'Current');
+      let val = parseInt(currentSpan.textContent) + delta;
+      if(val < 0) val = 0;
+      currentSpan.textContent = val;
+      updateChallengeProgress();
+    };
+
+    window.updateChallengeProgress = function() {
+      const exercises = ['pushup', 'pullup', 'squatChallenge', 'streak'];
+      exercises.forEach(ex => {
+        const current = parseInt(document.getElementById(ex + 'Current').textContent);
+        const goal = parseInt(document.getElementById(ex + 'Goal').value);
+        const percent = Math.min(100, Math.round((current / goal) * 100));
+        const progressBar = document.getElementById(ex + 'Progress');
+        if(progressBar) progressBar.style.width = percent + '%';
+      });
+    };
+
+    // ------------------------------------------------------------
+    // STEP COUNTER
+    // ------------------------------------------------------------
+    let steps = 8742;
+    let stepGoal = 10000;
+
+    window.addSteps = function(amount) {
+      steps += amount;
+      updateStepDisplay();
+    };
+    window.resetSteps = function() {
+      steps = 0;
+      updateStepDisplay();
+    };
+    window.updateStepProgress = function() {
+      stepGoal = parseInt(document.getElementById('stepGoal').value) || 10000;
+      updateStepDisplay();
+    };
+    function updateStepDisplay() {
+      document.getElementById('stepCount').textContent = steps;
+      const percent = Math.min(100, Math.round((steps / stepGoal) * 100));
+      document.getElementById('stepProgress').style.width = percent + '%';
+      document.getElementById('stepPercent').textContent = percent + '%';
+      const remaining = Math.max(0, stepGoal - steps);
+      document.getElementById('stepRemaining').textContent = remaining;
+      if(steps >= stepGoal) {
+        document.getElementById('stepMessage').innerHTML = '🎉 GOAL ACHIEVED! Great job!';
+      } else {
+        document.getElementById('stepMessage').innerHTML = `🏆 <span id="stepPercent">${percent}%</span> of daily goal - <span id="stepRemaining">${remaining}</span> steps to go!`;
+      }
+    }
+
+    // ------------------------------------------------------------
+    // YEARLY GOAL
+    // ------------------------------------------------------------
+    let yearlyCurrent = 750450;
+    let yearlyGoal = 1000000;
+
+    window.adjustYearlyTonnage = function(delta) {
+      yearlyCurrent += delta;
+      if(yearlyCurrent < 0) yearlyCurrent = 0;
+      updateYearlyDisplay();
+    };
+    window.updateYearlyGoal = function() {
+      yearlyGoal = parseInt(document.getElementById('yearlyGoal').value) || 1000000;
+      updateYearlyDisplay();
+    };
+    function updateYearlyDisplay() {
+      document.getElementById('yearlyCurrent').textContent = yearlyCurrent.toLocaleString();
+      const percent = Math.min(100, Math.round((yearlyCurrent / yearlyGoal) * 100));
+      document.getElementById('yearlyPercent').textContent = percent + '%';
+      document.getElementById('yearlyPercentText').textContent = percent + '%';
+      document.getElementById('yearlyProgressBar').style.width = percent + '%';
+      const circle = document.getElementById('yearlyProgressCircle');
+      circle.style.setProperty('--value', percent * 3.6);
+    }
+
+    // ------------------------------------------------------------
+    // SETTINGS & DRAWER LINKS
+    // ------------------------------------------------------------
+    document.getElementById('settingsDrawerLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('settings-panel-section').classList.remove('hidden');
+      document.getElementById('membership-panel-section').classList.add('hidden');
+      closeDrawer();
+    });
+    document.getElementById('closeSettingsBtn').addEventListener('click', () => {
+      document.getElementById('settings-panel-section').classList.add('hidden');
+    });
+    document.getElementById('membershipDrawerLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('membership-panel-section').classList.remove('hidden');
+      document.getElementById('settings-panel-section').classList.add('hidden');
+      closeDrawer();
+    });
+    document.getElementById('closeMembershipBtn').addEventListener('click', () => {
+      document.getElementById('membership-panel-section').classList.add('hidden');
+    });
+
+    window.updateAvatar = function(event) {
+      const file = event.target.files[0];
+      if(file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('settingsAvatarPreview').src = e.target.result;
+          document.getElementById('drawerAvatarImg').src = e.target.result;
+          document.getElementById('headerProfileImg').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    window.saveProfile = function() {
+      const name = document.getElementById('profileNameInput').value;
+      document.getElementById('usernameDisplay').textContent = name.split(' ')[0];
+      document.getElementById('drawerUserName').textContent = name;
+      alert('Profile saved!');
+    };
+
+    // Initialize displays
+    updateWorkoutDisplay();
+    updateWeightProgress();
+    updateWaterDisplay();
+    updateGoalProgress();
+    updateTonnage();
+    update1RM();
+    updateRest();
+    updateLeaderboard();
+    updateChallengeProgress();
+    updateStepDisplay();
+    updateYearlyDisplay();
+  </script>
+</body>
+</html>

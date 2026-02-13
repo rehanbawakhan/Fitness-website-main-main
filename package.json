@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "all": "^0.0.0",
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.0",
+    "express": "^5.1.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.17.0",
+    "node.js": "^0.0.1-security",
+    "openai": "^6.1.0",
+    "start": "^5.1.0"
+  }
+}
