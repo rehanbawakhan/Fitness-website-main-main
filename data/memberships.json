@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Beginner",
+    "priceINR": 1999,
+    "videoLink": "https://youtu.be/hkaHHE0AbXo?si=DEW7Zv0LtTSqHIwV"
+  },
+  {
+    "id": 2,
+    "name": "Intermediate",
+    "priceINR": 3999,
+    "videoLink": "https://youtu.be/XwSJy-S6oXI?si=E00uAZWHPWncP1h3"
+  },
+  {
+    "id": 3,
+    "name": "Advanced",
+    "priceINR": 5999,
+    "videoLink": "https://youtu.be/PKRSnpcTXdQ?si=MnHxW2C6Q_jm9lh7"
+  }
+]

@@ -903,7 +903,7 @@ h6.fw-bold i {
     // Product Data with Indian Rupee prices
     const USD_TO_INR = 83.50; // Conversion rate
     
-    const products = [
+    let products = [
       {
         id: 1,
         name: "Whey Protein Isolate (5lbs)",
@@ -1145,7 +1145,8 @@ h6.fw-bold i {
     document.addEventListener('DOMContentLoaded', function() {
       updateCartCount();
       showHomePage();
-      
+      loadProducts();
+
       // Add search event listener
       document.addEventListener('keyup', function(e) {
         if (e.target.id === 'search-input') {
@@ -1153,6 +1154,25 @@ h6.fw-bold i {
         }
       });
     });
+
+    async function loadProducts() {
+      try {
+        const response = await fetch('/api/products');
+        if (!response.ok) throw new Error('Failed to load products');
+        const data = await response.json();
+        if (Array.isArray(data) && data.length) {
+          products = data;
+          refreshProductList();
+        }
+      } catch (err) {
+        console.warn('Products load failed:', err);
+      }
+    }
+
+    function refreshProductList() {
+      const productList = document.getElementById('product-list');
+      if (productList) displayProducts(products);
+    }
 
     // Page Navigation Functions
     function showHomePage() {

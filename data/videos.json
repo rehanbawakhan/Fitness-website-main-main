@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "title": "Bench Press",
+    "category": "CHEST",
+    "url": "https://youtu.be/hkaHHE0AbXo?si=DEW7Zv0LtTSqHIwV",
+    "thumbnail": ""
+  },
+  {
+    "id": 2,
+    "title": "Incline Press",
+    "category": "CHEST",
+    "url": "https://youtu.be/XwSJy-S6oXI?si=E00uAZWHPWncP1h3",
+    "thumbnail": ""
+  },
+  {
+    "id": 3,
+    "title": "Cable Cross",
+    "category": "CHEST",
+    "url": "https://youtu.be/PKRSnpcTXdQ?si=MnHxW2C6Q_jm9lh7",
+    "thumbnail": ""
+  },
+  {
+    "id": 4,
+    "title": "Push Ups",
+    "category": "CHEST",
+    "url": "https://youtu.be/WP4v7TTKEfk?si=Pwb3gQIV3yxFu5LJ",
+    "thumbnail": ""
+  },
+  {
+    "id": 5,
+    "title": "Dips",
+    "category": "CHEST",
+    "url": "https://youtu.be/jzLfIJjHxXY?si=1VRGOAExbNkxf6la",
+    "thumbnail": ""
+  },
+  {
+    "id": 6,
+    "title": "The Best And Worst Biceps Exercises",
+    "category": "ARMS",
+    "url": "https://youtu.be/GNO4OtYoCYk?si=1TPy_eiWenphGfvD",
+    "thumbnail": ""
+  },
+  {
+    "id": 7,
+    "title": "Tricep Pushdown",
+    "category": "ARMS",
+    "url": "https://youtu.be/skDLLV2-L-c?si=vTcoBk26Ra1KVR8L",
+    "thumbnail": ""
+  },
+  {
+    "id": 8,
+    "title": "Hammer Curl",
+    "category": "ARMS",
+    "url": "https://youtu.be/vFXwQSuY_gw?si=_3Gf86_j-9GIdukp",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTw8OGR-y8DPcRIE_Ai_brh2h9awpnrBie2A&s"
+  },
+  {
+    "id": 9,
+    "title": "Skull Crusher",
+    "category": "ARMS",
+    "url": "https://youtu.be/V8UltHyi-9w?si=Ir43i3IsGJbT-m7V",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxgGJWyjFXCF7dFWQDByhW8WUTOij1wqRuDA&s"
+  },
+  {
+    "id": 10,
+    "title": "Preacher Curl",
+    "category": "ARMS",
+    "url": "https://youtu.be/A8gFTV0Dz_o?si=gw-ZxtKlOuP4ODDQ",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMmqXkjoBqz9NNinGbfFVvUHWeIS_RoQyf1w&s"
+  },
+  {
+    "id": 11,
+    "title": "Squats",
+    "category": "LEGS",
+    "url": "https://youtu.be/3GoRtoZcUvc?si=c073dd4UTqGhwk2A",
+    "thumbnail": ""
+  },
+  {
+    "id": 12,
+    "title": "Deadlifts",
+    "category": "LEGS",
+    "url": "https://youtu.be/H6mRkx1x77k?si=6Cdc7iMCBIko4ouC",
+    "thumbnail": ""
+  },
+  {
+    "id": 13,
+    "title": "Leg Press",
+    "category": "LEGS",
+    "url": "https://youtu.be/KdX2kh4m5Tk?si=DFRXQ27KqVQqKbYx",
+    "thumbnail": ""
+  },
+  {
+    "id": 14,
+    "title": "Lunges",
+    "category": "LEGS",
+    "url": "https://youtu.be/wQY9YkWYlQg?si=vBojQ6xgsNvXiwAZ",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMR-EKur2PqK5vEid1VD6nK4bZogau_PGHCA&s"
+  },
+  {
+    "id": 15,
+    "title": "Calf Raises",
+    "category": "LEGS",
+    "url": "https://youtu.be/JhzXZXCA1zY?si=z2hk9oT6MLCz7mXN",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwkzV3kjwv8I7OIoHm-sB3bwmZDsp3pWSEfA&s"
+  },
+  {
+    "id": 16,
+    "title": "Barbell Rows",
+    "category": "BACK",
+    "url": "https://youtu.be/BdhqubW1GJE?si=gffq3AJ08JhRNKkx",
+    "thumbnail": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&auto=format"
+  },
+  {
+    "id": 17,
+    "title": "Lat Pull Downs",
+    "category": "BACK",
+    "url": "https://youtu.be/3sacz2vU2kg?si=Xt3CviphY9t3dRnx",
+    "thumbnail": "https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=300&auto=format"
+  },
+  {
+    "id": 18,
+    "title": "single lat Row",
+    "category": "BACK",
+    "url": "https://youtu.be/jxOXUzyZQiM?si=PM7ZrL3ntghMAQEP",
+    "thumbnail": "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=300&auto=format"
+  },
+  {
+    "id": 19,
+    "title": "Back Extension",
+    "category": "BACK",
+    "url": "https://youtu.be/Ta8_ASDu9yk?si=xuWcPJB16U600B9b",
+    "thumbnail": "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=300&auto=format"
+  },
+  {
+    "id": 20,
+    "title": "Heavy rows",
+    "category": "BACK",
+    "url": "https://youtu.be/uUKAYkQZXko?si=_mWH5y0hEpipVyeQ",
+    "thumbnail": "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=300&auto=format"
+  },
+  {
+    "id": 21,
+    "title": "Leg Raises",
+    "category": "ABS",
+    "url": "https://youtu.be/BdhqubW1GJE?si=LJrx1WJNvupUxrpi",
+    "thumbnail": ""
+  },
+  {
+    "id": 22,
+    "title": "Russian Twist",
+    "category": "ABS",
+    "url": "https://youtu.be/8PwoytUU06g?si=ccuxK089CNdYd6zl",
+    "thumbnail": ""
+  },
+  {
+    "id": 23,
+    "title": "Abb Rollout",
+    "category": "ABS",
+    "url": "https://youtu.be/9p7-YC91Q74?si=WPCd81_fOQk5URgJ",
+    "thumbnail": ""
+  },
+  {
+    "id": 24,
+    "title": "Plank",
+    "category": "ABS",
+    "url": "https://youtu.be/9p7-YC91Q74?si=fGmYG69EFlrZrPNr",
+    "thumbnail": ""
+  },
+  {
+    "id": 25,
+    "title": "cable crunches",
+    "category": "ABS",
+    "url": "https://youtu.be/uUKAYkQZXko?si=WQWWs6oNXBnNgQby",
+    "thumbnail": ""
+  },
+  {
+    "id": 26,
+    "title": "Overhead Press",
+    "category": "SHOULDERS",
+    "url": "https://youtu.be/21lYP86dHW4?si=lKVgwjArRl4HJxAa",
+    "thumbnail": ""
+  },
+  {
+    "id": 27,
+    "title": "Lateral Raise",
+    "category": "SHOULDERS",
+    "url": "https://youtu.be/IU5iXcjot18?si=VUjYRpFqfhyoPhr5",
+    "thumbnail": ""
+  },
+  {
+    "id": 28,
+    "title": "Front Raise",
+    "category": "SHOULDERS",
+    "url": "https://youtu.be/QVaijMZ2mp8?si=1Ei1ooN4yhJt5bLK",
+    "thumbnail": ""
+  },
+  {
+    "id": 29,
+    "title": "Reverse Pec Deck",
+    "category": "SHOULDERS",
+    "url": "https://youtu.be/YT7qZKHhwE8?si=UoAf0iV3UfoNl_CX",
+    "thumbnail": ""
+  },
+  {
+    "id": 30,
+    "title": "Upright Row",
+    "category": "SHOULDERS",
+    "url": "https://youtu.be/INodWY-4z4E?si=jl1LhxHw3wfUKOyC",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqJR70lc5X1S2zjAohbCk9ihgCABns8cQjQw&s"
+  }
+]

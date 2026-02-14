@@ -25,6 +25,10 @@
     .section-header h2 span { background: linear-gradient(45deg, #ff4d4d, #ff1a1a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; border-bottom: 4px solid #ff3c3c; padding-bottom: 5px; }
     .section-header p { color: #d4d4d4; background: #1c1c1cbb; display: inline-block; padding: 10px 30px; border-radius: 40px; border: 1px solid #ff3c3c; }
 
+    .admin-videos {
+      margin-bottom: 50px;
+    }
+
     /* ----- MUSCLE GROUPS – GRID OF CARDS (each card contains video thumbnails) ----- */
     .muscle-grid {
       display: grid;
@@ -124,7 +128,7 @@
       <h2><span>🎯 MUSCLE</span> ATLAS</h2>
       <p>6 GROUPS · 30+ EXERCISES · BIG THUMBNAILS</p>
     </div>
-    <div class="muscle-grid">
+    <div class="muscle-grid" id="workoutGrid">
       
       <!-- CHEST – 5 videos -->
       <div class="muscle-card">
@@ -221,6 +225,95 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <script>
+  const categoryIcons = {
+    CHEST: 'fa-heartbeat',
+    ARMS: 'fa-hand-rock',
+    LEGS: 'fa-running',
+    BACK: 'fa-dumbbell',
+    ABS: 'fa-dumbbell',
+    SHOULDERS: 'fa-dumbbell',
+    'FULL BODY': 'fa-fire'
+  };
+
+  const categoryOrder = ['CHEST', 'ARMS', 'LEGS', 'BACK', 'ABS', 'SHOULDERS', 'FULL BODY', 'OTHER'];
+
+  function normalizeCategory(value) {
+    const raw = String(value || '').trim();
+    return raw ? raw.toUpperCase() : 'OTHER';
+  }
+
+  function titleCase(value) {
+    return value
+      .toLowerCase()
+      .replace(/\b\w/g, (char) => char.toUpperCase());
+  }
+
+  async function loadWorkoutVideos() {
+    const grid = document.getElementById('workoutGrid');
+    if (!grid) return;
+
+    try {
+      const res = await fetch('/api/videos');
+      const videos = await res.json();
+
+      if (!Array.isArray(videos) || videos.length === 0) {
+        grid.innerHTML = '<p style="color:#cfcfcf">No videos yet. Check back soon.</p>';
+        return;
+      }
+
+      const grouped = videos.reduce((acc, video) => {
+        const category = normalizeCategory(video.category);
+        if (!acc[category]) acc[category] = [];
+        acc[category].push(video);
+        return acc;
+      }, {});
+
+      const categories = Object.keys(grouped).sort((a, b) => {
+        const aIndex = categoryOrder.indexOf(a);
+        const bIndex = categoryOrder.indexOf(b);
+        const aRank = aIndex === -1 ? categoryOrder.length : aIndex;
+        const bRank = bIndex === -1 ? categoryOrder.length : bIndex;
+        if (aRank === bRank) return a.localeCompare(b);
+        return aRank - bRank;
+      });
+
+      grid.innerHTML = categories
+        .map((category) => {
+          const icon = categoryIcons[category] || 'fa-dumbbell';
+          const title = titleCase(category);
+          const items = grouped[category]
+            .map((video) => {
+              const label = video.title || 'Workout Video';
+              const url = video.url || '#';
+              const thumb =
+                video.thumbnail ||
+                'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&auto=format&fit=crop&q=80';
+              return `
+                <div class="video-thumb-item">
+                  <a href="${url}" class="thumb-link" target="_blank">
+                    <img class="thumb-img" src="${thumb}" alt="${label}">
+                    <span class="thumb-title"><i class="fab fa-youtube"></i> ${label}</span>
+                  </a>
+                </div>
+              `;
+            })
+            .join('');
+
+          return `
+            <div class="muscle-card">
+              <div class="muscle-header"><i class="fas ${icon}"></i><h3>${title}</h3></div>
+              <div class="video-thumb-grid">${items}</div>
+            </div>
+          `;
+        })
+        .join('');
+    } catch (err) {
+      grid.innerHTML = '<p style="color:#cfcfcf">Unable to load videos right now.</p>';
+    }
+  }
+
+  loadWorkoutVideos();
+
   new Splide('#fitness-carousel', {
     type: 'loop', perPage: 3, perMove: 1, autoplay: true, interval: 3500,
     gap: 20, pagination: true, arrows: true,

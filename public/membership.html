@@ -306,6 +306,30 @@
       color: black;
     }
 
+    .ms-video-link {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 60px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffb3b3;
+      transition: 0.2s;
+    }
+
+    .ms-video-link:hover {
+      background: white;
+      color: black;
+      box-shadow: 0 0 30px #ff3c3c;
+    }
+
     /* ----- CART –– ARMORED ----- */
     .ms-cart {
       background: #07090eee;
@@ -730,6 +754,9 @@
               <li><i class="fas fa-check-circle"></i> 2 group classes/week</li>
             </ul>
             <button class="ms-add-to-cart"><i class="fas fa-cart-plus"></i> ADD TO CART</button>
+            <a class="ms-video-link" href="https://youtu.be/hkaHHE0AbXo?si=DEW7Zv0LtTSqHIwV" target="_blank" rel="noopener">
+              <i class="fab fa-youtube"></i> PLAN VIDEO
+            </a>
           </div>
 
           <!-- INTERMEDIATE ₹3999 -->
@@ -752,6 +779,9 @@
               <li><i class="fas fa-check-circle"></i> Mobile app</li>
             </ul>
             <button class="ms-add-to-cart"><i class="fas fa-cart-plus"></i> ADD TO CART</button>
+            <a class="ms-video-link" href="https://youtu.be/XwSJy-S6oXI?si=E00uAZWHPWncP1h3" target="_blank" rel="noopener">
+              <i class="fab fa-youtube"></i> PLAN VIDEO
+            </a>
           </div>
 
           <!-- ADVANCED ₹5999 -->
@@ -774,6 +804,9 @@
               <li><i class="fas fa-check-circle"></i> 24/7 + sauna</li>
             </ul>
             <button class="ms-add-to-cart"><i class="fas fa-cart-plus"></i> ADD TO CART</button>
+            <a class="ms-video-link" href="https://youtu.be/PKRSnpcTXdQ?si=MnHxW2C6Q_jm9lh7" target="_blank" rel="noopener">
+              <i class="fab fa-youtube"></i> PLAN VIDEO
+            </a>
           </div>
         </div>
 
@@ -889,6 +922,29 @@
       const payAmountCard = document.getElementById('pay-amount-card');
       const qrAmountDisplay = document.getElementById('qr-amount-display');
       const toast = document.getElementById('ms-toast');
+
+      async function loadMembershipData() {
+        try {
+          const response = await fetch('/api/memberships');
+          if (!response.ok) throw new Error('Failed to load memberships');
+          const memberships = await response.json();
+          if (!Array.isArray(memberships)) return;
+          memberships.forEach((plan) => {
+            const card = document.querySelector(`.ms-card[data-id="${plan.id}"]`);
+            if (!card) return;
+            if (Number.isFinite(Number(plan.priceINR))) {
+              const price = Number(plan.priceINR);
+              card.dataset.price = String(price);
+              const priceEl = card.querySelector('.ms-price');
+              if (priceEl) priceEl.innerHTML = `₹${price}<span>/mo</span>`;
+            }
+            const linkEl = card.querySelector('.ms-video-link');
+            if (linkEl && plan.videoLink) linkEl.href = plan.videoLink;
+          });
+        } catch (err) {
+          console.warn('Memberships load failed:', err);
+        }
+      }
 
       // ---------- GOAL SELECTOR TOGGLE ----------
       document.querySelectorAll('.ms-goal-option').forEach(opt => {
@@ -1048,6 +1104,7 @@
 
       // ---------- INITIAL RENDER ----------
       renderCart();
+      loadMembershipData();
 
       // ---------- SPLIDE CAROUSEL ----------
       new Splide('#image-carousel', {
