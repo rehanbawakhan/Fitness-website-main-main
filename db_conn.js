@@ -1,11 +1,16 @@
 const mysql = require('mysql2');
 
+const DB_HOST = process.env.DB_HOST || 'localhost';
+const DB_USER = process.env.DB_USER || 'root';
+const DB_PASSWORD = process.env.DB_PASSWORD || 'root1';
+const DB_NAME = process.env.DB_NAME || 'fit';
+
 // Create connection
 const con = mysql.createConnection({
-  host: "localhost",        // Database host, usually localhost
-  user: "root",             // MySQL user (default is 'root')
-  password: "root1",         // MySQL password (make sure it's correct)
-  database: "fit"        // The name of the database you want to use
+  host: DB_HOST,        // Database host, usually localhost
+  user: DB_USER,        // MySQL user
+  password: DB_PASSWORD,
+  database: DB_NAME     // Database name
 });
 
 // Connect to MySQL
@@ -14,7 +19,7 @@ con.connect((err) => {
     console.error("Error connecting to the database:", err.message);
     return;
   }
-  console.log("Connected to MySQL Database 'fit' successfully!");
+  console.log(`Connected to MySQL Database '${DB_NAME}' successfully!`);
 });
 
 // Export the connection for use in other files
